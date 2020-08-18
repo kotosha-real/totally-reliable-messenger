@@ -1,0 +1,29 @@
+{
+  "name": "totally-reliable-messenger",
+  "version": "1.0.0",
+  "description": "The best choice if there is not one",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kotosha-real/mf.messenger.praktikum.yandex.git"
+  },
+  "keywords": [
+    "messenger",
+    "chat"
+  ],
+  "author": "Anton Subbotin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kotosha-real/mf.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/kotosha-real/mf.messenger.praktikum.yandex#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
+}
