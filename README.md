@@ -1,4 +1,4 @@
-[![Twitter Follow](https://img.shields.io/twitter/follow/_kotosha?style=social)][https://twitter.com/intent/follow?screen_name=_kotosha]
+![Twitter Follow](https://twitter.com/intent/follow?screen_name=_kotosha)]
 
 ## Description
 
