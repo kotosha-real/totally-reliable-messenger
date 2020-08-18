@@ -33,11 +33,24 @@ README — первое, что прочитает пользователь, к�
 
 Если у проекта есть сайт, добавьте ссылку в заголовок.
 
-## Установка
+## Jumpstart
 
-Лучше всего пользователя убеждает собственный опыт. Чем быстрее он начнёт пользоваться проектом, тем раньше почувствует пользу. Для этого помогите ему установить приложение: напишите краткую пошаговую инструкцию.
+First of all, install dependencies with
+```javascript
+npm install
+```
 
-Если проект предназначен для разработчиков, добавьте информацию об установке тестовых версий. Например:
+Start your work with
+```javascript
+npm start
+```
+
+Build production-ready version with
+```javascript
+npm run build
+```
+
+[Netlify](https://quizzical-wiles-72addf.netlify.app/) autodeploy configured from `deploy` branch
 
 - `npm install` — установка стабильной версии,
 - `npm start` — запуск версии для разработчика,
@@ -59,9 +72,33 @@ README — первое, что прочитает пользователь, к�
 
 ### **Команда**
 
-Если вы работаете в команде, укажите основных участников: им будет приятно, а новые разработчики охотнее присоединятся к проекту. «Гитхаб» — не просто инструмент, это социальная сеть разработчиков.
-
-![Команда](https://sun9-76.userapi.com/c850036/v850036740/1382d3/QsGFOTQD5io.jpg)
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top">
+        <img width="150" height="150" src="https://sun9-76.userapi.com/c850036/v850036740/1382d3/QsGFOTQD5io.jpg">
+        <br>
+        <a href="https://github.com/sokra">Anton Subbotin</a>
+        <br>
+        <p>CEO</p>
+      </td>
+      <td align="center" valign="top">
+        <img width="150" height="150" src="ttps://scontent-arn2-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/p640x640/57577131_139746693824462_7930720456520708313_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com&_nc_cat=102&_nc_ohc=QFmYGNy2IKkAX-gQy6j&oh=c41c12bb1ae21cd8e6e1491a2c201f30&oe=5F639D7A">
+        <br>
+        <a href="https://github.com/sokra">Anton Subbotin</a>
+        <br>
+        <p>Only dev</p>
+      </td>
+      <td align="center" valign="top">
+        <img width="150" height="150" src="https://scontent-arn2-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/59454362_186222022362627_9007876549048828039_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com&_nc_cat=103&_nc_ohc=8-wJPfKAQzcAX9rNcTz&oh=a919313d53cef40f12faf160e22f2483&oe=5F64FFC9">
+        <br>
+        <a href="https://github.com/sokra">Anton Subbotin</a>
+        <br>
+        <p>Cool security guy</p>
+      </td>
+     </tr>
+  </tbody>
+</table>
 
 ### **Примеры README**
 
