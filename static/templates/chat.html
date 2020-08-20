@@ -1,0 +1,433 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Totally Reliable Messenger</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script src="https://kit.fontawesome.com/741f9cea41.js" crossorigin="anonymous"></script>
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="messenger container">
+      <div class="messenger__inner">
+        <div class="sidebar">
+          <div class="zone_app zone_app_top">
+            <div class="ham">
+              <button id="ham" class="btn btn_app">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="search">
+              <form id="chatSearchForm" action="#">
+                <div class="input-field">
+                  <input
+                    id="chatSearchInput"
+                    type="text"
+                    placeholder="Search"
+                    class="input input_flat input_full-width"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="chat-list-wrapper">
+            <ul class="chat-list">
+              <li class="chat-list__item chat-list__item_active">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">
+                          Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh
+                          hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark!
+                        </div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">
+                          Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh
+                          hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark!
+                        </div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">
+                          Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh
+                          hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark!
+                        </div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">
+                          Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark! Oh
+                          hi Mark! Oh hi Mark! Oh hi Mark! Oh hi Mark!
+                        </div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                        <div class="chat-item__unread">1</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li class="chat-list__item">
+                <button class="chat-item">
+                  <div class="chat-item__inner">
+                    <div class="chat-item__avatar">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Beautiful person"
+                        width="48"
+                        height="48"
+                        class="img img_rounded"
+                      />
+                    </div>
+                    <div class="chat-item__content">
+                      <div class="chat-item__main">
+                        <div class="chat-item__user">Username</div>
+                        <div class="chat-item__message">Oh hi Mark!</div>
+                      </div>
+                      <div class="chat-item__info">
+                        <div class="chat-item__date">12:34</div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="chat__inner">
+            <div class="zone_app zone_app_top">
+              <div class="chat-item chat-item_open">
+                <div class="chat-item__inner">
+                  <div class="chat-item__avatar">
+                    <img
+                      src="https://via.placeholder.com/50"
+                      alt="Beautiful person"
+                      width="48"
+                      height="48"
+                      class="img img_rounded"
+                    />
+                  </div>
+                  <div class="chat-item__content">
+                    <div class="chat-item__main">
+                      <div class="chat-item__user">Username</div>
+                      <div class="chat-item__message">
+                        Was here
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn_app">
+                <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="chat__feed">
+              <!-- Maybe later ther will be stacks like in https://vk.com -->
+              <ul class="message-list">
+                <li class="message-list__item message-list__item_received">
+                  <div class="message">
+                    <div class="message__text">Anyway how is your sex life?</div>
+                    <div class="message__date">12:34</div>
+                  </div>
+                </li>
+                <li class="message-list__item message-list__item_sent">
+                  <div class="message">
+                    <div class="message__text">I didn't hit her, I did naaaht</div>
+                    <div class="message__date">12:34</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <form action="#" id="writingAreaForm" class="zone_app zone_app_bottom">
+              <button class="btn btn_app">
+                <i class="fas fa-paperclip" aria-hidden="true"></i>
+              </button>
+              <div class="chat__writing-area">
+                <div class="input-field">
+                  <input
+                    id="writingAreaInput"
+                    type="text"
+                    placeholder="Write your message here"
+                    class="input input_flat input_full-width"
+                  />
+                </div>
+              </div>
+              <button class="btn btn_app">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

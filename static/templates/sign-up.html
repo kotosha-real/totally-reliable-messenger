@@ -1,0 +1,73 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Totally Reliable Messenger</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script src="https://kit.fontawesome.com/741f9cea41.js" crossorigin="anonymous"></script>
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="login">
+      <div class="login__headline">Get on board</div>
+      <div class="login__tabs">
+        <button id="loginTab" class="btn btn_tab">Sign in</button>
+        <button id="regTab" class="btn btn_tab btn_tab_active">Sign up</button>
+      </div>
+      <div class="login__inner">
+        <form action="#" id="regForm">
+          <fieldset class="fieldset">
+            <div class="input-field">
+              <input type="text" id="regLoginInput" class="input input_common input_full-width" />
+              <label for="regLoginInput">Login</label>
+            </div>
+            <div class="input-field">
+              <input type="text" id="regEmailInput" class="input input_common input_full-width" />
+              <label for="regEmailInput">Email</label>
+            </div>
+            <div class="input-field">
+              <input
+                type="password"
+                id="regPasswordInput"
+                class="input input_common input_full-width"
+              />
+              <label for="regPasswordInput">Password</label>
+            </div>
+            <div class="input-field">
+              <input
+                type="password"
+                id="regPasswordRepeatInput"
+                class="input input_common input_full-width"
+              />
+              <label for="regPasswordRepeatInput">Confirm password</label>
+            </div>
+          </fieldset>
+          <fieldset class="fieldset">
+            <div class="input-field">
+              <button class="btn btn_flat btn_flat_common btn_full-width">Sign up</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
