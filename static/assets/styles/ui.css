@@ -1,0 +1,132 @@
+/**
+ * Buttons
+ */
+
+.btn {
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.btn.btn_full-width {
+  width: 100%;
+}
+
+.btn.btn_app {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #a0b3c1;
+  font-size: 1.5rem;
+}
+
+.btn.btn_common {
+  color: #0e63e0;
+}
+
+.btn.btn_danger {
+  color: #ef0000;
+}
+
+.btn.btn_flat {
+  padding: 1rem 0.75rem;
+  border-radius: 0.5rem;
+  color: #ffffff;
+}
+
+.btn.btn_flat.btn_flat_common {
+  background-color: #0e63e0;
+}
+
+.btn.btn_flat.btn_flat_danger {
+  background-color: #ef0000;
+}
+
+.btn.btn_accent {
+  text-decoration: underline;
+}
+
+.btn.btn_tab {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 2px solid #6e899e;
+  text-align: center;
+}
+
+.btn.btn_tab:hover {
+  border-color: #0e63e0;
+}
+
+.btn.btn_tab.btn_tab_active {
+  border-color: #0e63e0;
+  background-color: #afcfff42;
+}
+
+/**
+ * Forms
+ */
+
+.fieldset {
+  border: none;
+}
+
+.fieldset:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.input-field {
+  position: relative;
+}
+
+.input-field:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.input-field.input-field_centered {
+  text-align: center;
+}
+
+.input-field label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  -webkit-transition: font-size 0.25s ease, top 0.25s ease;
+  -o-transition: font-size 0.25s ease, top 0.25s ease;
+  transition: font-size 0.25s ease, top 0.25s ease;
+}
+
+.input-field label.label_lifted {
+  top: 0;
+  font-size: 0.6125rem;
+}
+
+.input {
+  height: 2.5rem;
+  border: 0;
+  outline: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.875rem;
+}
+
+.input.input_common {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #2b77e7;
+}
+
+.input.input_flat {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.input.input_full-width {
+  width: 100%;
+}
+
+.input.input_invalid {
+  border-bottom: 2px solid #ef0000;
+}
