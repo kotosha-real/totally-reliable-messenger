@@ -1,0 +1,143 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  color: #424242;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/**
+ * Custom scrollbar
+ * There will be some tiny JS-scrollbar later
+ */
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  border: 0.125rem solid #a0b3c1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6e899e;
+}
+
+/**
+ * Grid templates
+ */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 25%;
+  height: 100%;
+  background-color: #f0f2f5;
+  border-right: 1px solid #ced8df;
+}
+
+.screen {
+  width: 75%;
+  height: 100%;
+}
+
+.app_flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/**
+ * Messenger basic styles
+ */
+
+.messenger {
+  height: 100vh;
+  border-right: 1px solid #ced8df;
+  border-left: 1px solid #ced8df;
+}
+
+.messenger__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+
+.zone_app {
+  height: 5rem;
+  padding: 0 0.75rem;
+  background-color: #f0f2f5;
+}
+
+.zone_app.zone_app_top {
+  border-bottom: 1px solid #ced8df;
+}
+
+.zone_app.zone_app_bottom {
+  border-top: 1px solid #ced8df;
+}
+
+/**
+ * Verbose
+ */
+
+.messenger__verbose {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 0.75rem;
+}
+
+.verbose__block {
+  max-width: 600px;
+  text-align: center;
+}
+
+.verbose__headline {
+  margin: 1rem 0 3rem;
+  font-size: 3rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+}
+
+.verbose__text {
+  margin: 1.125rem 0;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
