@@ -661,7 +661,9 @@ form#statusForm {
   width: 100%;
   padding: 1rem 0.75rem;
   border: none;
-  outline: none;
+  /* Files are separate by their logic not by page content. Fix this later too  */
+  /* Make outline great again later */
+  /* outline: none; */
   color: #a0b3c1;
   font-size: 1rem;
   text-align: left;
