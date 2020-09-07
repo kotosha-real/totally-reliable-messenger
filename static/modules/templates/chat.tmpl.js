@@ -45,11 +45,9 @@ export const chatTemplate = `
         <form action="#" id="writingAreaForm" class="chat__form app_flex">
           {{> button (createObject icon = 'paperclip' id = 'buttonSend' classList = (createArray 'btn_app')) }}
           <div class="chat__writing-area">
-            <div class="input-field">
-              {{#with message }}
-                {{> input (createObject type = type title = title label = false placeholder = placeholder classList = (createArray 'input_flat' 'input_full-width') validations = validations) }}
-              {{/with}}
-            </div>
+            {{#with message }}
+              {{> input (createObject type = type title = title label = false placeholder = placeholder classList = (createArray 'input_flat' 'input_full-width') validation = validation) }}
+            {{/with}}
           </div>
           {{> button (createObject icon = 'paper-plane' id = 'buttonSend' classList = (createArray 'btn_app')) }}
         </form>

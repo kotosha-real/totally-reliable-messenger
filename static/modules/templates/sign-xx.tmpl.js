@@ -10,9 +10,7 @@ export const signXXTemplate = `
         <form action="#" id="signInForm">
           <fieldset class="fieldset">
             {{#each data }}
-              <div class="input-field">
-                {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validations) }}
-              </div>
+              {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validations) }}
             {{/each}}
           </fieldset>
           <fieldset class="fieldset">
@@ -20,7 +18,7 @@ export const signXXTemplate = `
               {{> button (createObject value = 'Sign in' id = 'buttonSignIn' classList = (createArray 'btn_flat' 'btn_flat_common' 'btn_full-width')) }}
             </div>
             <div class="input-field input-field_centered">
-              {{> button (createObject value = 'Forgot?' href = '#' id = 'buttonForgotPassword' classList = (createArray 'btn_common' 'btn_accent' 'btn_inline-width')) }}
+              {{> link (createObject value = 'Forgot?' href = '#' id = 'buttonForgotPassword' classList = (createArray 'btn_common' 'btn_accent' 'btn_inline-width')) }}
             </div>
           </fieldset>
         </form>
@@ -28,9 +26,7 @@ export const signXXTemplate = `
         <form action="#" id="signUpForm">
           <fieldset class="fieldset">
             {{#each data }}
-            <div class="input-field">
-              {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validations) }}
-            </div>
+              {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validation = this.validation) }}
             {{/each}}
           </fieldset>
           <fieldset class="fieldset">

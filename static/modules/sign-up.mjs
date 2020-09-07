@@ -8,49 +8,45 @@ const options = {
   data: [
     {
       title: 'Login',
-      value: '',
+      value: 'Mark',
       type: 'text',
-      validations: [
-        {
-          validation: 'pattern',
-          value: /.{6,}/
-        }
-      ]
+      validation: {
+        type: 'pattern',
+        value: /.{6,}/,
+        message: 'Must contain at least 6 characters'
+      }
     },
     {
       title: 'Email',
-      value: '',
+      value: 'mark@gmail.com',
       type: 'text',
-      validations: [
-        {
-          validation: 'pattern',
-          value: /\S+@\S+\.\S+/
-        }
-      ]
+      validation: {
+        type: 'pattern',
+        value: /\S+@\S+\.\S+/,
+        message: 'Must match e-mail pattern'
+      }
     },
     {
       title: 'Password',
-      value: '',
+      value: '123456',
       type: 'password',
-      validations: [
-        {
-          validation: 'pattern',
-          value: /.{6,}/,
-          match: 'Confirm password'
-        }
-      ]
+      validation: {
+        type: 'pattern',
+        value: /.{6,}/,
+        match: 'Confirm password',
+        message: 'Must contain at least 6 characters and match Confirm password field'
+      }
     },
     {
       title: 'Confirm password',
-      value: '',
+      value: '123456',
       type: 'password',
-      validations: [
-        {
-          validation: 'pattern',
-          value: /.{6,}/,
-          match: 'Password'
-        }
-      ]
+      validation: {
+        type: 'pattern',
+        value: /.{6,}/,
+        match: 'Password',
+        message: 'Must contain at least 6 characters and match Password field'
+      }
     }
   ]
 }

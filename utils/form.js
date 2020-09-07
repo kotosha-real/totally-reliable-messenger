@@ -1,46 +1,62 @@
 /**
- * Returns true if custom validation is passed
- * @param {event} evt
+ * Toggles @el invalid class .input_invalid depending on @valid param and prints @message error to @messageEl block (if both are present)
+ * @param {element} el
+ * @param {boolean} valid
+ */
+function toggleError(el, valid) {
+  const { v } = el
+  el.classList[valid ? 'remove' : 'add']('input_invalid')
+  el.classList[valid ? 'add' : 'remove']('input_valid')
+  if (v && v.message && v.messageEl) v.messageEl.textContent = !valid ? v.message : ''
+}
+
+/**
+ * Calls @toggleError to handle @el and @match (if @match is present) validation
+ * @param {element} el
+ * @param {boolean} valid
+ * @param {element} match
+ */
+function handleValidity(el, valid, match) {
+  toggleError(el, valid)
+  if (match) toggleError(match, valid)
+}
+
+/**
+ * Creates regex out of passed @el and tests its value then calls @handleValidity to set correct @el and @match visual state
+ * Returns true if @el value is valid or no @el is present
+ * @param {element} el
  * @returns {boolean}
  */
-function validate({ target: el }) {
-  if (!el.v || !el.v.validate) return true
+function validate(el) {
+  if (!el || !el.v || !el.v.validate) return true
 
   const { value, v } = el
-  let valid = true
 
   const regex = new RegExp(v.pattern)
   const match = v.match
+  const valid = match ? regex.test(value) && value === match.value : regex.test(value)
 
-  if (!regex.test(value) || (match && value !== match.value)) {
-    valid = false
-  }
-
-  if (!valid) {
-    el.classList.add('input_invalid')
-
-    if (match) match.classList.add('input_invalid')
-  } else {
-    el.classList.remove('input_invalid')
-
-    if (match) match.classList.remove('input_invalid')
-  }
+  handleValidity(el, valid, match)
 
   return valid
 }
 
 /**
  * Returns true if custom validation on every form element is passed
- * @param {*} evt
+ * @failFast param defines whether whole form will be checked or check will fail on first invalid field
+ * @param {NodeList} elements
+ * @param {boolean} failFast
  * @returns {boolean}
  */
-function validateForm(elements) {
+function validateForm(elements, failFast = true) {
   let valid = true
 
-  elements.forEach((el) => {
-    const elValid = validate({ target: el })
-    valid = valid === true ? elValid : false
-  })
+  // @elements is a @NodeList so no some() or smth pal :c
+  for (const el of elements) {
+    valid = validate(el)
+
+    if (!valid && failFast) return valid
+  }
 
   return valid
 }
@@ -76,12 +92,14 @@ function toggleLabel(el) {
  * @param {element} form
  */
 function createValidationContext(el, form) {
-  const { vPattern, vMatch } = el.dataset
+  const { vPattern, vMatch, vMessage } = el.dataset
 
   el.v = {
     validate: true,
     pattern: vPattern.slice(1, vPattern.length - 1),
-    match: vMatch ? form.querySelector(vMatch) : null
+    match: vMatch ? form.querySelector(vMatch) : null,
+    message: vMessage,
+    messageEl: el.parentNode.querySelector('.errors')
   }
 }
 
@@ -101,7 +119,7 @@ function onBlur(evt) {
   const { target: el } = evt
 
   toggleLabel(el)
-  validate(evt)
+  validate(el)
 }
 
 /**

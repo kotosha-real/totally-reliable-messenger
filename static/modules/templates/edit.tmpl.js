@@ -10,9 +10,7 @@ export const editTemplate = `
         <form action="#" id="editForm">
           <fieldset class="fieldset">
             {{#each user.data }}
-              <div class="input-field">
-                {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validations) }}
-              </div>
+              {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validation = this.validation) }}
             {{/each}}
           </fieldset>
           <fieldset class="fieldset">
@@ -20,7 +18,7 @@ export const editTemplate = `
               {{> button (createObject value = 'Save changes' id = 'buttonSaveChanges' classList = (createArray 'btn_flat' 'btn_flat_common' 'btn_full-width')) }}
             </div>
             <div class="input-field input-field_centered">
-              {{> button (createObject value = 'Back' href = '#' id = 'buttonEditBack' classList = (createArray 'btn_accent')) }}
+              {{> link (createObject value = 'Back' href = '#' id = 'buttonEditBack' classList = (createArray 'btn_accent')) }}
             </div>
           </fieldset>
         </form>

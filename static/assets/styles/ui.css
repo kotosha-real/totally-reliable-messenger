@@ -89,7 +89,7 @@
 
 .input-field label {
   position: absolute;
-  top: 50%;
+  top: 1.25rem;
   left: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -103,6 +103,12 @@
 .input-field label.label_lifted {
   top: 0;
   font-size: 0.6125rem;
+}
+
+.input-field .errors {
+  margin-top: 0.25rem;
+  color: #ef0000;
+  font-size: 0.75rem;
 }
 
 .input {
@@ -125,6 +131,10 @@
 
 .input.input_full-width {
   width: 100%;
+}
+
+.input.input_valid {
+  border-bottom: 2px solid #55aa55;
 }
 
 .input.input_invalid {
