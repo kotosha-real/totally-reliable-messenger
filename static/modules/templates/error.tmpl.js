@@ -6,7 +6,7 @@ export const errorTemplate = `
           <div class="verbose__headline">{{ error.code }}</div>
           <div class="verbose__text">{{ error.message }}</div>
           <div class="verbose__text">
-            {{> button (createObject value = 'Go home' href = '#' id = 'buttonErrorBack' classList = (createArray 'btn' 'btn_common' 'btn_accent' 'btn_inline')) }}
+            {{> link (createObject value = 'Go home' href = '#' id = 'buttonErrorBack' classList = (createArray 'btn' 'btn_common' 'btn_accent' 'btn_inline')) }}
           </div>
         </div>
       </div>
