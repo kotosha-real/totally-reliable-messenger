@@ -72,12 +72,10 @@ const options = {
     value: '',
     type: 'text',
     placeholder: 'Write your message here',
-    validations: [
-      {
-        validation: 'pattern',
-        value: /\S+/
-      }
-    ]
+    validation: {
+      type: 'pattern',
+      value: /\S+/
+    }
   }
 }
 

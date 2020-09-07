@@ -5,14 +5,7 @@ export const sidebarTemplate = `
     </div>
     <div class="search">
       <form id="chatSearchForm" action="#">
-        <div class="input-field">
-          <input
-            id="chatSearchInput"
-            type="text"
-            placeholder="Search"
-            class="input input_flat input_full-width"
-          />
-        </div>
+        {{> input (createObject type = 'text' title = 'chatSearchInput' placeholder = 'Search' label = false classList = (createArray 'input_flat' 'input_full-width') validation = false) }}
       </form>
     </div>
   </header>
