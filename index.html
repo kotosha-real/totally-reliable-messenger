@@ -3,19 +3,34 @@
   <head>
     <title>Hello</title>
     <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dist/style.css" />
+    <script src="https://kit.fontawesome.com/741f9cea41.js" crossorigin="anonymous"></script>
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css"
+      media="all"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div>Hello, my comrads!</div>
+    <div id="app"></div>
 
-    <ul>
-      <li><a href="./static/pages/list.html">List</a></li>
-      <li><a href="./static/pages/chat.html">Chat</a></li>
-      <li><a href="./static/pages/profile.html">Profile</a></li>
-      <li><a href="./static/pages/edit.html">Edit</a></li>
-      <li><a href="./static/pages/sign-in.html">Sign in</a></li>
-      <li><a href="./static/pages/sign-up.html">Sign up</a></li>
-      <li><a href="./static/pages/404.html">404</a></li>
-      <li><a href="./static/pages/5xx.html">5xx</a></li>
-    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="./src/helpers/index.js" type="module"></script>
+    <script src="./src/partials/index.js" type="module"></script>
+    <script src="./dist/index.js" type="module"></script>
   </body>
 </html>
