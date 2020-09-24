@@ -1,0 +1,39 @@
+import Router from './components/Router.js'
+import ChatList from './components/ChatList/index.js'
+import { options as ChatListOptions } from './components/ChatList/options.js'
+import Chat from './components/Chat/index.js'
+import { options as ChatOptions } from './components/Chat/options.js'
+import Profile from './components/Profile/index.js'
+import { options as ProfileOptions } from './components/Profile/options.js'
+import Edit from './components/Edit/index.js'
+import { options as EditOptions } from './components/Edit/options.js'
+import Auth from './components/Auth/index.js'
+import { options as SignInOptions } from './components/Auth/options/optionsSignIn.js'
+import { options as SignUpOptions } from './components/Auth/options/optionsSignUp.js'
+import ScreenError from './components/ScreenError/index.js'
+import { options as ClientErrorOptions } from './components/ScreenError/options/optionsClientError.js'
+import { options as ClienServerErrorOptions } from './components/ScreenError/options/optionsServerError.js'
+import { appTemplate } from './components/CommonTmpl/AppTemplate.js'
+import { errorTemplate } from './components/CommonTmpl/ErrorTemplate.js'
+import { signXXTemplate } from './components/Auth/template.js'
+
+const router: Router = new Router('#app')
+
+router.use('/', new ChatList(appTemplate, ChatListOptions))
+router.use('/chat', new Chat(appTemplate, ChatOptions))
+router.use('/profile', new Profile(appTemplate, ProfileOptions))
+router.use('/edit', new Edit(appTemplate, EditOptions))
+router.use('/sign-in', new Auth(signXXTemplate, SignInOptions))
+router.use('/sign-up', new Auth(signXXTemplate, SignUpOptions))
+router.use('/404', new ScreenError(errorTemplate, ClientErrorOptions))
+router.use('/500', new ScreenError(errorTemplate, ClienServerErrorOptions))
+
+router.start()
+
+// Have fun
+declare global {
+  interface Window {
+    router: Router
+  }
+}
+window.router = router
