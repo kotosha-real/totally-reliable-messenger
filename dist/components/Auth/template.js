@@ -7,7 +7,7 @@ export const signXXTemplate = `
     </div>
     <div class="login__inner">
       {{#if (isLogin type) }}
-        <form action="#" id="signInForm">
+        <form action="#" id="authForm">
           <fieldset class="fieldset">
             {{#each data }}
               {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validations) }}
@@ -23,7 +23,7 @@ export const signXXTemplate = `
           </fieldset>
         </form>
       {{else}}
-        <form action="#" id="signUpForm">
+        <form action="#" id="authForm">
           <fieldset class="fieldset">
             {{#each data }}
               {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validation = this.validation) }}
