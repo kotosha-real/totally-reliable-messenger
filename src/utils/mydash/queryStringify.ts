@@ -1,7 +1,7 @@
 import { isObject } from './isObject'
 
 /**
- * Returns stringified object to use in @http class
+ * Returns stringified object to use in @http class or elsewhere
  * @param {object} data
  * @returns {string}
  */
