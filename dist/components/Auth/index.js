@@ -11,7 +11,7 @@ export default class ErrorScreen extends AbstractComponent {
     render() {
         const { _element } = this;
         if (_element) {
-            const form = _element.querySelector('#signUpForm');
+            const form = _element.querySelector('#authForm');
             if (form)
                 setFormValidation(form);
         }
