@@ -16,7 +16,7 @@ export default class Profile extends AbstractComponent {
     render() {
         const { _element } = this;
         if (_element) {
-            const form = _element.querySelector('#writingAreaForm');
+            const form = _element.querySelector('#editForm');
             if (form)
                 setFormValidation(form);
         }
