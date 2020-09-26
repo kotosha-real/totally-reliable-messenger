@@ -1,30 +1,31 @@
-import AbstractComponent from './AbstractComponent.js'
-import Route from './Route.js'
+import { AbstractComponent } from './AbstractComponent'
+import { Route } from './Route'
 
-export default class Router {
+export class Router {
   static __instance: Router | undefined
 
-  root!: HTMLElement | null
-  routes!: Route[]
-  history!: History
+  _currentRoute: Route | null
 
-  _currentRoute!: Route | null
+  routes: Route[]
+  history: History
 
-  constructor(root?: string) {
-    if (Router.__instance) {
-      return Router.__instance
-    }
-
-    this.root = document.querySelector(root!)
-    this.routes = []
-    this.history = window.history
+  private constructor() {
     this._currentRoute = null
 
-    Router.__instance = this
+    this.routes = []
+    this.history = window.history
   }
 
-  use(pathname: string, block: AbstractComponent): Router {
-    const route = new Route(pathname, block)
+  public static getInstance(): Router {
+    if (!Router.__instance) {
+      Router.__instance = new Router()
+    }
+
+    return Router.__instance
+  }
+
+  use(pathname: string, block: AbstractComponent, root: string): Router {
+    const route = new Route(pathname, block, root)
     this.routes.push(route)
     return this
   }

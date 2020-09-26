@@ -7,7 +7,7 @@
  * Tests are fine, believe me ;)
  */
 
-import http from '../src/components/http.ts'
+import { http } from '../src/components/http.ts'
 
 const httpInstance = new http()
 

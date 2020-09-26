@@ -1,27 +1,19 @@
-import AbstractComponent from '../AbstractComponent.js'
-import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarChatTemplate.js'
-import { chatTemplate as screen } from './template.js'
+import { AbstractComponent } from '../AbstractComponent'
+import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarChatTemplate'
+import { chatTemplate as screen } from './template'
 
 Handlebars.registerPartial('sidebar', sidebar)
 Handlebars.registerPartial('screen', screen)
 
-export default class ChatList extends AbstractComponent {
+export class ChatList extends AbstractComponent {
   constructor(template: string, options: Record<string, any>) {
     super(template, options)
   }
-
-  init() {}
-
-  componentDidMount() {}
-
-  componentDidUpdate() {}
 
   componentWillRender() {
     Handlebars.registerPartial('sidebar', sidebar)
     Handlebars.registerPartial('screen', screen)
   }
-
-  render() {}
 
   unmount() {
     Handlebars.unregisterPartial('sidebar')

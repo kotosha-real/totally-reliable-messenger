@@ -1,17 +1,11 @@
-import AbstractComponent from '../AbstractComponent.js'
-import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarSettingsTemplate.js'
-import { profileTemplate as screen } from './template.js'
+import { AbstractComponent } from '../AbstractComponent'
+import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarSettingsTemplate'
+import { profileTemplate as screen } from './template'
 
-export default class Profile extends AbstractComponent {
+export class Profile extends AbstractComponent {
   constructor(template: string, options: Record<string, any>) {
     super(template, options)
   }
-
-  init() {}
-
-  componentDidMount() {}
-
-  componentDidUpdate() {}
 
   componentWillRender() {
     Handlebars.registerPartial('sidebar', sidebar)

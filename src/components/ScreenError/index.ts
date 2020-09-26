@@ -1,19 +1,7 @@
-import AbstractComponent from '../AbstractComponent.js'
+import { AbstractComponent } from '../AbstractComponent'
 
-export default class ErrorScreen extends AbstractComponent {
+export class ScreenError extends AbstractComponent {
   constructor(template: string, options: Record<string, any>) {
     super(template, options)
   }
-
-  init() {}
-
-  componentDidMount() {}
-
-  componentDidUpdate() {}
-
-  componentWillRender() {}
-
-  render() {}
-
-  unmount() {}
 }
