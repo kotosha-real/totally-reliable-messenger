@@ -12,7 +12,7 @@ const METHODS = {
  * @param {object} data
  */
 
-export default class http {
+export class http {
   get(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     const { data } = options
     return this.request(
@@ -71,7 +71,7 @@ export default class http {
     if (!xhr) throw new Error('Give me something')
 
     Object.entries(headers).forEach(([header, value]) => {
-      if (!header || typeof header !== 'string' || !value || typeof value !== 'string') return
+      if (!header || !value) return
       xhr.setRequestHeader(header, value)
     })
   }

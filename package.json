@@ -4,7 +4,9 @@
   "description": "The best choice if there is not one",
   "main": "index.js",
   "scripts": {
-    "test": "npm test",
+    "test": "jest",
+    "sass": "sass ./src/assets/styles/style.scss:./dist/style.css",
+    "build": "tsc && node build && npm run sass",
     "start": "node server"
   },
   "repository": {
