@@ -7,19 +7,12 @@
  * Tests are fine, believe me ;)
  */
 
-import Router from '../src/components/Router'
-import Route from '../src/components/Route'
+import { Router } from '../src/components/Router'
+import { Route } from '../src/components/Route'
+import { AbstractComponent } from '../src/components/AbstractComponent'
 
-const router = new Router('#app')
-
-jest.mock('../src/components/Route', () => {
-  return function (pathname) {
-    this.pathname = pathname
-    this.match = (pathname) => this.pathname === pathname
-    this.render = jest.fn()
-  }
-})
-jest.mock('../src/components/AbstractComponent', () => {})
+const router = Router.getInstance()
+const component = new AbstractComponent('', {})
 
 describe('Router module', () => {
   beforeEach(() => {
@@ -28,15 +21,14 @@ describe('Router module', () => {
 
   describe('use()', () => {
     test('add route', () => {
-      const route = new Route('/')
-      router.use('/', route)
+      const route = new Route('/', component)
+      router.use('/', component)
       const res = router.routes.find((r) => r.pathname === route.pathname)
       expect(res).not.toBeNull()
     })
 
     test('return Router instance', () => {
-      const route = new Route('/')
-      const res = router.use('/', route)
+      const res = router.use('/', component)
       expect(res).toBe(Router.__instance)
     })
   })
@@ -50,12 +42,6 @@ describe('Router module', () => {
       router.start.bind(vm)()
       expect(vm._onRoute).toHaveBeenCalled()
     })
-
-    test('return Router instance', () => {
-      const route = new Route('/')
-      const res = router.use('/', route)
-      expect(res).toBe(Router.__instance)
-    })
   })
 
   describe('_onRoute()', () => {
@@ -65,13 +51,10 @@ describe('Router module', () => {
     })
 
     test('with correct route', () => {
-      const route = new Route('/')
-      router.use('/', route)
+      const route = new Route('/', component)
+      router.use('/', component)
       router._onRoute('/')
-      // thx Jest for this beautiful hack
-      expect(JSON.parse(JSON.stringify(router._currentRoute))).toEqual(
-        JSON.parse(JSON.stringify(route))
-      )
+      expect(router._currentRoute.pathname).toEqual(route.pathname)
     })
   })
 
@@ -109,23 +92,19 @@ describe('Router module', () => {
 
   describe('getRoute()', () => {
     test('return 404 route when passed route does not exist', () => {
-      const routeChat = new Route('/chat')
-      const routeErr = new Route('/404')
-      router.use('/chat', routeChat)
-      router.use('/404', routeErr)
+      const routeErr = new Route('/404', component)
+      router.use('/404', component)
 
       const res = router.getRoute('/oops')
-      expect(JSON.parse(JSON.stringify(res))).toEqual(JSON.parse(JSON.stringify(routeErr)))
+      expect(res.pathname).toEqual(routeErr.pathname)
     })
 
     test('return correct route', () => {
-      const routeChat = new Route('/chat')
-      const routeErr = new Route('/404')
-      router.use('/chat', routeChat)
-      router.use('/404', routeErr)
+      const routeChat = new Route('/chat', component)
+      router.use('/chat', component)
 
       const res = router.getRoute('/chat')
-      expect(JSON.parse(JSON.stringify(res))).toEqual(JSON.parse(JSON.stringify(routeChat)))
+      expect(res.pathname).toEqual(routeChat.pathname)
     })
   })
 })

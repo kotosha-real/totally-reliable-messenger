@@ -1,4 +1,4 @@
-import { TYPE } from '../../../constants/index.js'
+import { TYPE } from '../../../constants/index'
 
 export const options = {
   type: TYPE.LOGIN,

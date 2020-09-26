@@ -1,16 +1,14 @@
-import EventBus from './EventBus.js'
-import { compile } from '../utils/mydash/compile.js'
-import { isEqual } from '../utils/mydash/isEqual.js'
-import Router from './Router.js'
+import { EventBus } from './EventBus'
+import { compile } from '../utils/mydash/compile'
+import { isEqual } from '../utils/mydash/isEqual'
 
-export default class AbstractComponent {
+export class AbstractComponent {
   _events: Record<string, any>
   _template: string
   _element: HTMLElement | null
 
   options: Record<string, any>
   eventBus: EventBus
-  router: Router
 
   constructor(template: string, options = {}) {
     // instead of static to please Jest :c
@@ -28,7 +26,6 @@ export default class AbstractComponent {
     this.options = options
     this.options = this._proxyOptions(this.options)
     this.eventBus = new EventBus()
-    this.router = new Router()
 
     this._registerEvents(this.eventBus)
     this.eventBus.emit(this._events.INIT)
@@ -56,6 +53,11 @@ export default class AbstractComponent {
   }
 
   _componentDidMount(): void {
+    /**
+     * Q: Почему 2 одинаковых метода, один из которых (приватный) вызывает публичный? это странно выглядит, для чего приватный?
+     * A: Для консистентности. Есть приватные методы, которые так или иначе имеют некоторую логику. Они здесь была, но оказалсь выпилена и потенциально может быть реализована снова.
+     *    Изнутри приватные методы вызывают публичные, которые можно переопределить в каждом компоненте, расширяющем абстрактный, то есть, по сути публичные методы являются хуками.
+     */
     this.componentDidMount()
   }
 
@@ -73,22 +75,25 @@ export default class AbstractComponent {
 
   componentDidUpdate(): void {}
 
-  _componentWillRender(): void {
+  _componentWillRender(root: string): void {
     this.componentWillRender()
-    this.eventBus.emit(this._events.FLOW_RENDER)
+    this.eventBus.emit(this._events.FLOW_RENDER, root)
   }
 
   componentWillRender(): void {}
 
-  _render(): void {
-    const { root } = this.router
-    if (!root) return
+  _render(root: string): void {
+    let rootEl: Node | null =
+      this._element && this._element.parentNode
+        ? this._element.parentNode
+        : document.querySelector(root)
 
-    if (root && this._element && root.firstChild === this._element)
-      root.removeChild(this._element as Node) // re-render case
+    if (!rootEl) return
+
+    if (this._element) rootEl.removeChild(this._element as Node) // re-render case
 
     this._element = compile(this._template, this.options)
-    root.appendChild(this._element as Node)
+    rootEl.appendChild(this._element as Node)
 
     this.render()
   }
@@ -96,11 +101,14 @@ export default class AbstractComponent {
   render(): void {}
 
   _unmount(): void {
-    const { root } = this.router
-    if (!root) return
+    if (this._element) {
+      const { parentNode } = this._element
 
-    root.removeChild(this._element as Node)
-    this._element = null
+      if (!parentNode) return
+
+      parentNode.removeChild(this._element as Node)
+      this._element = null
+    }
 
     this.unmount()
   }

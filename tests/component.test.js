@@ -7,7 +7,7 @@
  * Tests are fine, believe me ;)
  */
 
-import AbstractComponent from '../src/components/AbstractComponent'
+import { AbstractComponent } from '../src/components/AbstractComponent'
 
 const component = new AbstractComponent('', {})
 
@@ -104,9 +104,6 @@ describe('component module', () => {
         _template: '',
         _element: null,
         options: {},
-        router: {
-          root: null
-        },
         render: jest.fn()
       }
 
@@ -117,41 +114,42 @@ describe('component module', () => {
     test('render _element and call render()', () => {
       const element = document.createElement('div')
       const root = document.createElement('div')
+
+      root.id = 'app'
       document.body.appendChild(root)
 
       const vm = {
         _template: '',
         _element: null,
         options: {},
-        router: {
-          root: root
-        },
         render: jest.fn()
       }
 
-      component._render.bind(vm)()
+      component._render.bind(vm)('#app')
       expect(vm._element).toEqual(element)
       expect(vm.render).toHaveBeenCalled()
     })
 
     test('correct re-render handling', () => {
       const element = document.createElement('div')
-      const root = element
+      const root = document.createElement('div')
+
+      root.id = 'app'
+      root.appendChild(element)
       document.body.appendChild(root)
 
       const vm = {
         _template: '',
-        _element: null,
+        _element: element,
         options: {},
-        router: {
-          root: root
-        },
         render: jest.fn()
       }
+      console.log(root)
 
-      component._render.bind(vm)()
+      component._render.bind(vm)('#app')
       expect(vm.render).toHaveBeenCalled()
-      expect(vm.router.root.childNodes.length).toBe(1)
+
+      expect(root.childNodes.length).toBe(1)
     })
   })
 

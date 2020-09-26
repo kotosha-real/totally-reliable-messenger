@@ -1,18 +1,12 @@
-import AbstractComponent from '../AbstractComponent.js'
-import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarSettingsTemplate.js'
-import { editTemplate as screen } from './template.js'
-import { setFormValidation } from '../../utils/libs/form.js'
+import { AbstractComponent } from '../AbstractComponent'
+import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarSettingsTemplate'
+import { editTemplate as screen } from './template'
+import { setFormValidation } from '../../utils/libs/form'
 
-export default class Profile extends AbstractComponent {
+export class Edit extends AbstractComponent {
   constructor(template: string, options: Record<string, any>) {
     super(template, options)
   }
-
-  init() {}
-
-  componentDidMount() {}
-
-  componentDidUpdate() {}
 
   componentWillRender() {
     Handlebars.registerPartial('sidebar', sidebar)
