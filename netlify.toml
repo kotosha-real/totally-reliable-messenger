@@ -1,3 +1,4 @@
 [[redirects]]
-  status = 404
-  to = "/"
+from = "/*"
+status = 200
+to = "/index.html"
