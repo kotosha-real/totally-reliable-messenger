@@ -3,18 +3,18 @@ import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarSettingsTemplat
 import { profileTemplate as screen } from './template'
 
 export class Profile extends AbstractComponent {
-  constructor(template: string, options: Record<string, any>) {
+  constructor (template: string, options: Record<string, any>) {
     super(template, options)
   }
 
-  componentWillRender() {
+  componentWillRender () {
     Handlebars.registerPartial('sidebar', sidebar)
     Handlebars.registerPartial('screen', screen)
   }
 
-  render() {}
+  render () {}
 
-  unmount() {
+  unmount () {
     Handlebars.unregisterPartial('sidebar')
     Handlebars.unregisterPartial('screen')
   }

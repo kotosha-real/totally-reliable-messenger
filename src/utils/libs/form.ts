@@ -5,7 +5,7 @@ import { IFormElement } from '../../interfaces/IFormElement.js'
  * @param {element} el
  * @param {boolean} valid
  */
-function toggleError(el: IFormElement, valid: boolean): void {
+function toggleError (el: IFormElement, valid: boolean): void {
   const { v } = el
   el.classList[valid ? 'remove' : 'add']('input_invalid')
   el.classList[valid ? 'add' : 'remove']('input_valid')
@@ -18,7 +18,7 @@ function toggleError(el: IFormElement, valid: boolean): void {
  * @param {boolean} valid
  * @param {element} match
  */
-function handleValidity(el: IFormElement, valid: boolean, match: IFormElement): void {
+function handleValidity (el: IFormElement, valid: boolean, match: IFormElement): void {
   toggleError(el, valid)
   if (match) toggleError(match, valid)
 }
@@ -29,7 +29,7 @@ function handleValidity(el: IFormElement, valid: boolean, match: IFormElement): 
  * @param {element} el
  * @returns {boolean}
  */
-function validate(el: IFormElement): boolean {
+function validate (el: IFormElement): boolean {
   if (!el || !el.v || !el.v.validate) return true
 
   const { value, v } = el
@@ -50,7 +50,7 @@ function validate(el: IFormElement): boolean {
  * @param {boolean} failFast
  * @returns {boolean}
  */
-function validateForm(elements: NodeListOf<IFormElement>, failFast = true): boolean {
+function validateForm (elements: NodeListOf<IFormElement>, failFast = true): boolean {
   let valid = true
 
   // @elements is a @NodeList so no some() or smth pal :c
@@ -67,9 +67,9 @@ function validateForm(elements: NodeListOf<IFormElement>, failFast = true): bool
  * Prints @form data in console
  * @param {element} evt
  */
-function printFormData(form: HTMLFormElement): void {
+function printFormData (form: HTMLFormElement): void {
   const formData = new FormData(form)
-  let obj: Record<string, any> = {}
+  const obj: Record<string, any> = {}
 
   for (const [key, value] of formData.entries()) {
     obj[key] = value
@@ -82,7 +82,7 @@ function printFormData(form: HTMLFormElement): void {
  * Toggles label of form field (lifted when filled or focused, default otherwise)
  * @param {element} el
  */
-function toggleLabel(el: IFormElement): void {
+function toggleLabel (el: IFormElement): void {
   const { value, nextElementSibling: label } = el
 
   if (label && label.tagName === 'LABEL' && !value) label.classList.toggle('label_lifted')
@@ -93,7 +93,7 @@ function toggleLabel(el: IFormElement): void {
  * @param {element} el
  * @param {element} form
  */
-function createValidationContext(el: IFormElement, form: HTMLFormElement): void {
+function createValidationContext (el: IFormElement, form: HTMLFormElement): void {
   const { vPattern, vMatch, vMessage } = el.dataset
 
   el.v = {
@@ -109,7 +109,7 @@ function createValidationContext(el: IFormElement, form: HTMLFormElement): void 
  * Calls @toggleLabel on @el focus
  * @param {event} evt
  */
-function onFocus(evt: Event): void {
+function onFocus (evt: Event): void {
   const el: IFormElement = evt.target as IFormElement
   toggleLabel(el)
 }
@@ -118,7 +118,7 @@ function onFocus(evt: Event): void {
  * Calls @toggleLabel and @validate on @el blur
  * @param {event} evt
  */
-function onBlur(evt: Event): void {
+function onBlur (evt: Event): void {
   const el: IFormElement = evt.target as IFormElement
 
   toggleLabel(el)
@@ -131,7 +131,7 @@ function onBlur(evt: Event): void {
  * @param {HTMLCollection} elements
  * @param {boolean} validate
  */
-function onSubmit(evt: Event, elements: NodeListOf<IFormElement>, validate: boolean): void {
+function onSubmit (evt: Event, elements: NodeListOf<IFormElement>, validate: boolean): void {
   evt.preventDefault()
 
   const { target: form } = evt
@@ -147,7 +147,7 @@ function onSubmit(evt: Event, elements: NodeListOf<IFormElement>, validate: bool
  * Sets validation to all @form fields and binds @onSubmit on submit event
  * @param {element} form
  */
-export function setFormValidation(form: HTMLFormElement): void {
+export function setFormValidation (form: HTMLFormElement): void {
   const elements: NodeListOf<IFormElement> = form.querySelectorAll('.input')
   let validate: boolean = false
 

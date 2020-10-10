@@ -4,5 +4,3 @@ export const options = {
     message: 'This is the messenger dude honestly. How the heck did you wind up here?'
   }
 }
-
-

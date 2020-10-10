@@ -2,11 +2,11 @@ import { AbstractComponent } from '../AbstractComponent'
 import { setFormValidation } from '../../utils/libs/form'
 
 export class Auth extends AbstractComponent {
-  constructor(template: string, options: Record<string, any>) {
+  constructor (template: string, options: Record<string, any>) {
     super(template, options)
   }
 
-  render() {
+  render () {
     const { _element } = this
 
     if (_element) {
@@ -15,5 +15,5 @@ export class Auth extends AbstractComponent {
     }
   }
 
-  unmount() {}
+  unmount () {}
 }

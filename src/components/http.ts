@@ -13,7 +13,7 @@ const METHODS = {
  */
 
 export class http {
-  get(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  get (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     const { data } = options
     return this.request(
       `${url}${queryStringify(data)}`,
@@ -22,19 +22,19 @@ export class http {
     )
   }
 
-  post(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  post (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.POST }, options.timeout)
   }
 
-  put(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  put (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.PUT }, options.timeout)
   }
 
-  delete(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  delete (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
   }
 
-  request(
+  request (
     url: string,
     options: Record<string, any>,
     timeout = 5000
@@ -67,7 +67,7 @@ export class http {
     })
   }
 
-  setHeaders(xhr: XMLHttpRequest, headers: Record<string, any>): void {
+  setHeaders (xhr: XMLHttpRequest, headers: Record<string, any>): void {
     if (!xhr) throw new Error('Give me something')
 
     Object.entries(headers).forEach(([header, value]) => {

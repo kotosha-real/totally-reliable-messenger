@@ -6,16 +6,16 @@ Handlebars.registerPartial('sidebar', sidebar)
 Handlebars.registerPartial('screen', screen)
 
 export class ChatList extends AbstractComponent {
-  constructor(template: string, options: Record<string, any>) {
+  constructor (template: string, options: Record<string, any>) {
     super(template, options)
   }
 
-  componentWillRender() {
+  componentWillRender () {
     Handlebars.registerPartial('sidebar', sidebar)
     Handlebars.registerPartial('screen', screen)
   }
 
-  unmount() {
+  unmount () {
     Handlebars.unregisterPartial('sidebar')
     Handlebars.unregisterPartial('screen')
   }

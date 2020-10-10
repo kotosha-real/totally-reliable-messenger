@@ -30,6 +30,3 @@ router.use('/404', new ScreenError(errorTemplate, ClientErrorOptions), app)
 router.use('/500', new ScreenError(errorTemplate, ClienServerErrorOptions), app)
 
 router.start()
-
-// Have fun
-window.router = router

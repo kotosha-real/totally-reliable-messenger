@@ -10,7 +10,7 @@ export class AbstractComponent {
   options: Record<string, any>
   eventBus: EventBus
 
-  constructor(template: string, options = {}) {
+  constructor (template: string, options = {}) {
     // instead of static to please Jest :c
     this._events = {
       INIT: 'init',
@@ -31,15 +31,15 @@ export class AbstractComponent {
     this.eventBus.emit(this._events.INIT)
   }
 
-  get element(): HTMLElement | null {
+  get element (): HTMLElement | null {
     return this._element
   }
 
-  set element(el) {
+  set element (el) {
     this._element = el
   }
 
-  _registerEvents(eventBus: EventBus): void {
+  _registerEvents (eventBus: EventBus): void {
     eventBus.on(this._events.INIT, this._init.bind(this))
     eventBus.on(this._events.FLOW_CDM, this._componentDidMount.bind(this))
     eventBus.on(this._events.FLOW_CDU, this._componentDidUpdate.bind(this))
@@ -48,11 +48,11 @@ export class AbstractComponent {
     eventBus.on(this._events.FLOW_CWU, this._unmount.bind(this))
   }
 
-  _init(): void {
+  _init (): void {
     this.eventBus.emit(this._events.FLOW_CDM)
   }
 
-  _componentDidMount(): void {
+  _componentDidMount (): void {
     /**
      * Q: Почему 2 одинаковых метода, один из которых (приватный) вызывает публичный? это странно выглядит, для чего приватный?
      * A: Для консистентности. Есть приватные методы, которые так или иначе имеют некоторую логику. Они здесь была, но оказалсь выпилена и потенциально может быть реализована снова.
@@ -61,9 +61,9 @@ export class AbstractComponent {
     this.componentDidMount()
   }
 
-  componentDidMount(): void {}
+  componentDidMount (): void {}
 
-  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>): void {
+  _componentDidUpdate (oldProps: Record<string, any>, newProps: Record<string, any>): void {
     const equal = isEqual(oldProps, newProps)
 
     if (!equal) {
@@ -73,17 +73,17 @@ export class AbstractComponent {
     }
   }
 
-  componentDidUpdate(): void {}
+  componentDidUpdate (): void {}
 
-  _componentWillRender(root: string): void {
+  _componentWillRender (root: string): void {
     this.componentWillRender()
     this.eventBus.emit(this._events.FLOW_RENDER, root)
   }
 
-  componentWillRender(): void {}
+  componentWillRender (): void {}
 
-  _render(root: string): void {
-    let rootEl: Node | null =
+  _render (root: string): void {
+    const rootEl: Node | null =
       this._element && this._element.parentNode
         ? this._element.parentNode
         : document.querySelector(root)
@@ -98,9 +98,9 @@ export class AbstractComponent {
     this.render()
   }
 
-  render(): void {}
+  render (): void {}
 
-  _unmount(): void {
+  _unmount (): void {
     if (this._element) {
       const { parentNode } = this._element
 
@@ -113,26 +113,26 @@ export class AbstractComponent {
     this.unmount()
   }
 
-  unmount(): void {}
+  unmount (): void {}
 
-  _proxyOptions(options: Record<string, any>): Record<string, any> {
+  _proxyOptions (options: Record<string, any>): Record<string, any> {
     const self = this
 
     return new Proxy(options, {
-      set(target, prop, value) {
-        let oldTarget = Object.assign({}, target)
-        let newTarget = Object.assign({}, target, { [prop]: value })
+      set (target, prop, value) {
+        const oldTarget = Object.assign({}, target)
+        const newTarget = Object.assign({}, target, { [prop]: value })
         self.eventBus.emit(self._events.FLOW_CDU, oldTarget, newTarget)
         return true
       },
 
-      deleteProperty() {
+      deleteProperty () {
         throw new Error('Get lost.')
       }
     })
   }
 
-  setOptions(options: Record<string, any>): void {
+  setOptions (options: Record<string, any>): void {
     if (!options) {
       return
     }
