@@ -1,12 +1,3 @@
-/**
- * IMPORTANT NOTE
- *
- * Since @tsc does not serve file extensions I should use them in src files' imports
- * But Jest does not like it when there are extensions in imports
- * So I write extensions to make it work
- * Tests are fine, believe me ;)
- */
-
 import { http } from '../src/components/http.ts'
 
 const httpInstance = new http()

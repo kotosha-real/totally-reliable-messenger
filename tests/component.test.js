@@ -1,12 +1,3 @@
-/**
- * IMPORTANT NOTE
- *
- * Since @tsc does not serve file extensions I should use them in src files' imports
- * But Jest does not like it when there are extensions in imports
- * So I write extensions to make it work
- * Tests are fine, believe me ;)
- */
-
 import { AbstractComponent } from '../src/components/AbstractComponent'
 
 const component = new AbstractComponent('', {})
@@ -99,6 +90,8 @@ describe('component module', () => {
   })
 
   describe('_render()', () => {
+    Handlebars.compile = () => () => '<div></div>'
+
     test('fail fast without root', () => {
       const vm = {
         _template: '',
@@ -144,7 +137,6 @@ describe('component module', () => {
         options: {},
         render: jest.fn()
       }
-      console.log(root)
 
       component._render.bind(vm)('#app')
       expect(vm.render).toHaveBeenCalled()
