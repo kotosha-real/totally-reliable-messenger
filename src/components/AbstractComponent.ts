@@ -10,7 +10,7 @@ export class AbstractComponent {
   options: Record<string, any>
   eventBus: EventBus
 
-  constructor(template: string, options = {}) {
+  constructor (template: string, options = {}) {
     this._events = {
       INIT: 'init',
       FLOW_CDM: 'flow:component-did-mount',
@@ -29,15 +29,15 @@ export class AbstractComponent {
     this._registerEvents(this.eventBus)
   }
 
-  get element(): HTMLElement | null {
+  get element (): HTMLElement | null {
     return this._element
   }
 
-  set element(el) {
+  set element (el) {
     this._element = el
   }
 
-  _registerEvents(eventBus: EventBus): void {
+  _registerEvents (eventBus: EventBus): void {
     eventBus.on(this._events.INIT, this._init.bind(this))
     eventBus.on(this._events.FLOW_CDM, this._componentDidMount.bind(this))
     eventBus.on(this._events.FLOW_CDU, this._componentDidUpdate.bind(this))
@@ -46,14 +46,14 @@ export class AbstractComponent {
     eventBus.on(this._events.FLOW_CWU, this._unmount.bind(this))
   }
 
-  _init(): void {
+  _init (): void {
     this.init()
     this.eventBus.emit(this._events.FLOW_CDM)
   }
 
-  init(): void {}
+  init (): void {}
 
-  _componentDidMount(): void {
+  _componentDidMount (): void {
     // wait for the data and then emit render
     this.componentDidMount().then(() => {
       this.eventBus.emit(this._events.FLOW_CWR)
@@ -67,9 +67,9 @@ export class AbstractComponent {
 
   // async function used to retrieve some data before component render
   // data setter have to be implemented in child components
-  async componentDidMount(): Promise<void> {}
+  async componentDidMount (): Promise<void> {}
 
-  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>): void {
+  _componentDidUpdate (oldProps: Record<string, any>, newProps: Record<string, any>): void {
     const equal = isEqual(oldProps, newProps)
 
     if (!equal) {
@@ -78,16 +78,16 @@ export class AbstractComponent {
     }
   }
 
-  componentDidUpdate(): void {}
+  componentDidUpdate (): void {}
 
-  _componentWillRender(root: string): void {
+  _componentWillRender (root: string): void {
     this.componentWillRender()
     this.eventBus.emit(this._events.FLOW_RENDER, root)
   }
 
-  componentWillRender(): void {}
+  componentWillRender (): void {}
 
-  _render(root = '#app'): void {
+  _render (root = '#app'): void {
     const rootEl: Node | null =
       this._element && this._element.parentNode
         ? this._element.parentNode
@@ -103,9 +103,9 @@ export class AbstractComponent {
     this.render()
   }
 
-  render(): void {}
+  render (): void {}
 
-  _unmount(): void {
+  _unmount (): void {
     if (this._element) {
       const { parentNode } = this._element
 
@@ -118,13 +118,13 @@ export class AbstractComponent {
     this.unmount()
   }
 
-  unmount(): void {}
+  unmount (): void {}
 
-  _proxyOptions(options: Record<string, any>): Record<string, any> {
+  _proxyOptions (options: Record<string, any>): Record<string, any> {
     const self = this
 
     return new Proxy(options, {
-      set(target, prop, value) {
+      set (target, prop, value) {
         const oldTarget = Object.assign({}, target)
         const newTarget = Object.assign({}, target, { [prop]: value })
         target[String(prop)] = value
@@ -132,13 +132,13 @@ export class AbstractComponent {
         return true
       },
 
-      deleteProperty() {
+      deleteProperty () {
         throw new Error('Get lost.')
       }
     })
   }
 
-  setOptions(options: Record<string, any>): void {
+  setOptions (options: Record<string, any>): void {
     if (!options) {
       return
     }

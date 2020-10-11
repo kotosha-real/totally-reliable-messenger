@@ -6,7 +6,7 @@ import { Router } from '../Router'
 import { profileTemplate as screen } from './template'
 import { setFormValidation } from '../../utils/libs/form'
 
-function processUserData(res: XMLHttpRequest, component: Profile) {
+function processUserData (res: XMLHttpRequest, component: Profile) {
   const options = JSON.parse(res.response)
   options.avatar = `https://ya-praktikum.tech${options.avatar}`
   const convertedOptions = { user: { data: convert(options) } }
@@ -17,22 +17,22 @@ function processUserData(res: XMLHttpRequest, component: Profile) {
 }
 
 export class Profile extends AbstractComponent {
-  constructor(template: string, options: Record<string, any>) {
+  constructor (template: string, options: Record<string, any>) {
     super(template, options)
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     await http.get('https://ya-praktikum.tech/api/v2/auth/user').then((res) => {
       processUserData(res, this)
     })
   }
 
-  componentWillRender() {
+  componentWillRender () {
     Handlebars.registerPartial('sidebar', sidebar)
     Handlebars.registerPartial('screen', screen)
   }
 
-  render() {
+  render () {
     const { _element } = this
 
     if (_element) {
@@ -63,7 +63,7 @@ export class Profile extends AbstractComponent {
     }
   }
 
-  unmount() {
+  unmount () {
     Handlebars.unregisterPartial('sidebar')
     Handlebars.unregisterPartial('screen')
   }

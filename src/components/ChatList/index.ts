@@ -9,18 +9,18 @@ Handlebars.registerPartial('sidebar', sidebar)
 Handlebars.registerPartial('screen', screen)
 
 export class ChatList extends AbstractComponent {
-  constructor(template: string, options: Record<string, any>) {
+  constructor (template: string, options: Record<string, any>) {
     super(template, options)
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     await http.get('https://ya-praktikum.tech/api/v2/chats').then((res) => {
       const chats = JSON.parse(res.response)
       this.setOptions({ chats })
     })
   }
 
-  render() {
+  render () {
     const { _element } = this
 
     if (_element) {
@@ -52,12 +52,12 @@ export class ChatList extends AbstractComponent {
     }
   }
 
-  componentWillRender() {
+  componentWillRender () {
     Handlebars.registerPartial('sidebar', sidebar)
     Handlebars.registerPartial('screen', screen)
   }
 
-  unmount() {
+  unmount () {
     Handlebars.unregisterPartial('sidebar')
     Handlebars.unregisterPartial('screen')
   }

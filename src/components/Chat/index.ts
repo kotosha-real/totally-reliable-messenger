@@ -5,11 +5,11 @@ import { http } from '../http'
 import { Router } from '../Router'
 import { setFormValidation } from '../../utils/libs/form'
 
-function getChatId(): number {
+function getChatId (): number {
   return +document.location.search.slice(1).replace(/\D/g, '')
 }
 
-async function removeUserFromChat(evt: Event): Promise<void> {
+async function removeUserFromChat (evt: Event): Promise<void> {
   const target = evt.target as HTMLElement
   const btnUser = target.closest('.chat-users__user-remove') as HTMLElement
 
@@ -37,11 +37,11 @@ async function removeUserFromChat(evt: Event): Promise<void> {
 }
 
 export class Chat extends AbstractComponent {
-  constructor(template: string, options: Record<string, any>) {
+  constructor (template: string, options: Record<string, any>) {
     super(template, options)
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     const options: Record<string, any> = {}
     const id = getChatId()
 
@@ -62,12 +62,12 @@ export class Chat extends AbstractComponent {
     })
   }
 
-  componentWillRender() {
+  componentWillRender () {
     Handlebars.registerPartial('sidebar', sidebar)
     Handlebars.registerPartial('screen', screen)
   }
 
-  render() {
+  render () {
     const { _element } = this
 
     if (_element) {
@@ -95,7 +95,7 @@ export class Chat extends AbstractComponent {
     document.addEventListener('click', removeUserFromChat)
   }
 
-  unmount() {
+  unmount () {
     document.removeEventListener('click', removeUserFromChat)
     Handlebars.unregisterPartial('sidebar')
     Handlebars.unregisterPartial('screen')

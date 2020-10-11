@@ -55,7 +55,7 @@ const setHeaders = (xhr: XMLHttpRequest, headers: Record<string, any>): void => 
 }
 
 export class http {
-  static get(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static get (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     const { data } = options
     return request(
       `${url}${queryStringify(data)}`,
@@ -64,15 +64,15 @@ export class http {
     )
   }
 
-  static post(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static post (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return request(url, { ...options, method: METHODS.POST }, options.timeout)
   }
 
-  static put(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static put (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return request(url, { ...options, method: METHODS.PUT }, options.timeout)
   }
 
-  static delete(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static delete (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return request(url, { ...options, method: METHODS.DELETE }, options.timeout)
   }
 }

@@ -6,16 +6,16 @@ import { Router } from '../Router'
 import { http } from '../http'
 
 export class PasswordChange extends AbstractComponent {
-  constructor(template: string, options: Record<string, any>) {
+  constructor (template: string, options: Record<string, any>) {
     super(template, options)
   }
 
-  componentWillRender() {
+  componentWillRender () {
     Handlebars.registerPartial('sidebar', sidebar)
     Handlebars.registerPartial('screen', screen)
   }
 
-  render() {
+  render () {
     const { _element } = this
 
     if (_element) {
@@ -36,7 +36,7 @@ export class PasswordChange extends AbstractComponent {
     }
   }
 
-  unmount() {
+  unmount () {
     Handlebars.unregisterPartial('sidebar')
     Handlebars.unregisterPartial('screen')
   }
