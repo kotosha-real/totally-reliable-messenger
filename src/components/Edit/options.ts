@@ -4,7 +4,8 @@ export const options = {
     login: 'Mark',
     data: [
       {
-        title: 'Login',
+        title: 'First name',
+        name: 'first_name',
         value: 'Mark',
         type: 'text',
         validation: {
@@ -14,7 +15,41 @@ export const options = {
         }
       },
       {
+        title: 'Second name',
+        name: 'second_name',
+        value: 'Mark',
+        type: 'text',
+        validation: {
+          type: 'pattern',
+          value: /.{6,}/,
+          message: 'Must contain at least 6 characters'
+        }
+      },
+      {
+        title: 'Display name',
+        name: 'display_name',
+        value: 'Johnny69',
+        type: 'text',
+        validation: {
+          type: 'pattern',
+          value: /.{6,}/,
+          message: 'Must contain at least 6 characters'
+        }
+      },
+      {
+        title: 'Login',
+        name: 'login',
+        value: 'mark@gmail.com',
+        type: 'text',
+        validation: {
+          type: 'pattern',
+          value: /.{6,}/,
+          message: 'Must contain at least 6 characters'
+        }
+      },
+      {
         title: 'Email',
+        name: 'email',
         value: 'mark@gmail.com',
         type: 'text',
         validation: {
@@ -24,25 +59,14 @@ export const options = {
         }
       },
       {
-        title: 'Password',
-        value: '123456',
-        type: 'password',
+        title: 'Phone',
+        name: 'phone',
+        value: '8 123 456 78 90',
+        type: 'text',
         validation: {
           type: 'pattern',
-          value: /.{6,}/,
-          match: 'Confirm password',
-          message: 'Must contain at least 6 characters and match Confirm password field'
-        }
-      },
-      {
-        title: 'Confirm password',
-        value: '123456',
-        type: 'password',
-        validation: {
-          type: 'pattern',
-          value: /.{6,}/,
-          match: 'Password',
-          message: 'Must contain at least 6 characters and match Password field'
+          value: /\d+/,
+          message: 'Must be digits'
         }
       }
     ],

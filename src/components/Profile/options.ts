@@ -1,20 +1,4 @@
 export const options = {
-  user: {
-    avatar: 'https://via.placeholder.com/150',
-    login: 'Mark',
-    data: [
-      {
-        title: 'Логин',
-        value: 'Mark'
-      },
-      {
-        title: 'email',
-        value: 'mark@gmail.com'
-      }
-    ],
-    online: true,
-    lastOnline: ''
-  },
   settings: [
     {
       active: true,
@@ -26,5 +10,15 @@ export const options = {
       title: 'Night mode',
       icon: 'moon'
     }
-  ]
+  ],
+  avatar: {
+    title: 'Avatar',
+    name: 'avatar',
+    type: 'file',
+    validation: {
+      type: 'fileType',
+      value: /image/,
+      message: 'Must be image'
+    }
+  }
 }

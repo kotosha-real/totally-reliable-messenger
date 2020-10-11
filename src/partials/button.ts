@@ -8,7 +8,7 @@
 Handlebars.registerPartial(
   'button',
   `
-    <button id="{{#if id }}{{ getCamelCaseId id }}{{/if}}" class="btn {{#if classList }}{{ stringifyClassList classList }}{{/if}}" {{#if (hasRoute route) }}onclick="router.go(&quot;/{{ route }}&quot;)"{{/if}}">
+    <button id="{{#if id }}{{ id }}{{/if}}" class="btn {{#if classList }}{{ stringifyClassList classList }}{{/if}}" {{#if (hasRoute route) }}onclick="router.go(&quot;/{{ route }}&quot;)"{{/if}}">
       {{#if icon }}
         <i class="fas fa-{{ icon }}" aria-hidden="true"></i>
       {{/if}}

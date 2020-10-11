@@ -5,7 +5,7 @@ import { IFormElement } from '../../interfaces/IFormElement.js'
  * @param {element} el
  * @param {boolean} valid
  */
-function toggleError (el: IFormElement, valid: boolean): void {
+function toggleError(el: IFormElement, valid: boolean): void {
   const { v } = el
   el.classList[valid ? 'remove' : 'add']('input_invalid')
   el.classList[valid ? 'add' : 'remove']('input_valid')
@@ -18,7 +18,7 @@ function toggleError (el: IFormElement, valid: boolean): void {
  * @param {boolean} valid
  * @param {element} match
  */
-function handleValidity (el: IFormElement, valid: boolean, match: IFormElement): void {
+function handleValidity(el: IFormElement, valid: boolean, match: IFormElement): void {
   toggleError(el, valid)
   if (match) toggleError(match, valid)
 }
@@ -29,14 +29,22 @@ function handleValidity (el: IFormElement, valid: boolean, match: IFormElement):
  * @param {element} el
  * @returns {boolean}
  */
-function validate (el: IFormElement): boolean {
+function validate(el: IFormElement): boolean {
   if (!el || !el.v || !el.v.validate) return true
 
   const { value, v } = el
-
-  const regex = new RegExp(v.pattern)
   const match = v.match
-  const valid = match ? regex.test(value) && value === match.value : regex.test(value)
+  let regex: RegExp
+  let valid: boolean = false
+
+  if (v.pattern) {
+    regex = new RegExp(v.pattern)
+    valid = match ? regex.test(value) && value === match.value : regex.test(value)
+  } else if (v.fileType) {
+    const file = el.files![0]
+    regex = new RegExp(v.fileType)
+    valid = Boolean(file && regex.test(file.type))
+  }
 
   handleValidity(el, valid, match)
 
@@ -50,7 +58,7 @@ function validate (el: IFormElement): boolean {
  * @param {boolean} failFast
  * @returns {boolean}
  */
-function validateForm (elements: NodeListOf<IFormElement>, failFast = true): boolean {
+function validateForm(elements: NodeListOf<IFormElement>, failFast = true): boolean {
   let valid = true
 
   // @elements is a @NodeList so no some() or smth pal :c
@@ -64,25 +72,10 @@ function validateForm (elements: NodeListOf<IFormElement>, failFast = true): boo
 }
 
 /**
- * Prints @form data in console
- * @param {element} evt
- */
-function printFormData (form: HTMLFormElement): void {
-  const formData = new FormData(form)
-  const obj: Record<string, any> = {}
-
-  for (const [key, value] of formData.entries()) {
-    obj[key] = value
-  }
-
-  console.log(obj)
-}
-
-/**
  * Toggles label of form field (lifted when filled or focused, default otherwise)
  * @param {element} el
  */
-function toggleLabel (el: IFormElement): void {
+function toggleLabel(el: IFormElement): void {
   const { value, nextElementSibling: label } = el
 
   if (label && label.tagName === 'LABEL' && !value) label.classList.toggle('label_lifted')
@@ -93,12 +86,13 @@ function toggleLabel (el: IFormElement): void {
  * @param {element} el
  * @param {element} form
  */
-function createValidationContext (el: IFormElement, form: HTMLFormElement): void {
-  const { vPattern, vMatch, vMessage } = el.dataset
+function createValidationContext(el: IFormElement, form: HTMLFormElement): void {
+  const { vPattern, vFiletype, vMatch, vMessage } = el.dataset
 
   el.v = {
     validate: true,
     pattern: vPattern && vPattern.slice(1, vPattern.length - 1),
+    fileType: vFiletype && vFiletype.slice(1, vFiletype.length - 1),
     match: vMatch ? form.querySelector(vMatch) : null,
     message: vMessage,
     messageEl: el.parentNode && el.parentNode.querySelector('.errors')
@@ -109,7 +103,7 @@ function createValidationContext (el: IFormElement, form: HTMLFormElement): void
  * Calls @toggleLabel on @el focus
  * @param {event} evt
  */
-function onFocus (evt: Event): void {
+function onFocus(evt: Event): void {
   const el: IFormElement = evt.target as IFormElement
   toggleLabel(el)
 }
@@ -118,7 +112,7 @@ function onFocus (evt: Event): void {
  * Calls @toggleLabel and @validate on @el blur
  * @param {event} evt
  */
-function onBlur (evt: Event): void {
+function onBlur(evt: Event): void {
   const el: IFormElement = evt.target as IFormElement
 
   toggleLabel(el)
@@ -131,7 +125,12 @@ function onBlur (evt: Event): void {
  * @param {HTMLCollection} elements
  * @param {boolean} validate
  */
-function onSubmit (evt: Event, elements: NodeListOf<IFormElement>, validate: boolean): void {
+function onSubmit(
+  evt: Event,
+  elements: NodeListOf<IFormElement>,
+  validate: boolean,
+  cb: Function
+): void {
   evt.preventDefault()
 
   const { target: form } = evt
@@ -139,15 +138,15 @@ function onSubmit (evt: Event, elements: NodeListOf<IFormElement>, validate: boo
   if (validate) {
     const valid = validateForm(elements)
 
-    if (valid) printFormData(form as HTMLFormElement)
-  } else printFormData(form as HTMLFormElement)
+    if (valid) cb(new FormData(form as HTMLFormElement))
+  } else cb(new FormData(form as HTMLFormElement))
 }
 
 /**
  * Sets validation to all @form fields and binds @onSubmit on submit event
  * @param {element} form
  */
-export function setFormValidation (form: HTMLFormElement): void {
+export function setFormValidation(form: HTMLFormElement, cb: Function): void {
   const elements: NodeListOf<IFormElement> = form.querySelectorAll('.input')
   let validate: boolean = false
 
@@ -162,6 +161,6 @@ export function setFormValidation (form: HTMLFormElement): void {
   })
 
   form.addEventListener('submit', (evt: Event) => {
-    onSubmit(evt, elements, validate)
+    onSubmit(evt, elements, validate, cb)
   })
 }

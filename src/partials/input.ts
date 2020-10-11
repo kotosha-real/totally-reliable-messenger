@@ -13,8 +13,8 @@ Handlebars.registerPartial(
     <div class="input-field">
       <input
         type="{{#if type }}{{ type }}{{else}}text{{/if}}"
-        id="{{#if title }}{{ getCamelCaseId title }}{{/if}}"
-        name="{{#if title }}{{ getCamelCaseId title }}{{/if}}"
+        id="{{#if name }}{{ name }}{{/if}}"
+        name="{{#if name }}{{ name }}{{/if}}"
         placeholder="{{#if placeholder }}{{ placeholder }}{{/if}}"
         class="input {{#if classList }}{{ stringifyClassList classList }}{{/if}}"
         {{#if validation}}

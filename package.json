@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "sass": "sass ./src/assets/styles/style.scss:./dist/style.css",
-    "build": "tsc && node build && npm run sass",
+    "build": "webpack",
     "start": "node server",
     "lint": "eslint src/**/*.{ts,js} --quiet",
     "lint:fix": "eslint src/**/*.{ts,js} --quiet --fix"
@@ -41,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "4.4.0",
     "@typescript-eslint/parser": "4.4.0",
     "babel-jest": "26.3.0",
-    "css-loader": "^4.3.0",
+    "css-loader": "4.3.0",
     "eslint": "7.11.0",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-import": "2.22.1",
@@ -53,7 +52,7 @@
     "prettier": "2.0.5",
     "sass": "1.26.11",
     "sass-loader": "10.0.3",
-    "style-loader": "^2.0.0",
+    "style-loader": "2.0.0",
     "ts-loader": "8.0.4",
     "typescript": "4.0.3",
     "webpack": "4.44.2",
