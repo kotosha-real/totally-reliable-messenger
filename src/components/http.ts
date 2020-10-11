@@ -8,7 +8,7 @@ const METHODS = {
 }
 
 export class http {
-  static get(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static get (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     const { data } = options
     return this.request(
       `${url}${queryStringify(data)}`,
@@ -17,21 +17,21 @@ export class http {
     )
   }
 
-  static post(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static post (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.POST }, options.timeout)
   }
 
-  static put(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static put (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.PUT }, options.timeout)
   }
 
-  static delete(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static delete (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
   }
 
   // did not want to include request and setHeaders methods here but have no idea how to test them elsewise
   // will be glad to hear an advice
-  static request(
+  static request (
     url: string,
     options: Record<string, any>,
     timeout = 5000
@@ -69,7 +69,7 @@ export class http {
     })
   }
 
-  static setHeaders(xhr: XMLHttpRequest, headers: Record<string, any>): void {
+  static setHeaders (xhr: XMLHttpRequest, headers: Record<string, any>): void {
     if (!xhr) throw new Error('Give me something')
 
     Object.entries(headers).forEach(([header, value]) => {
