@@ -6,7 +6,7 @@
  */
 
 export const trim = (value: string, removable = ''): string => {
-  let regexp: RegExp = new RegExp(`^([${removable}\\s]+)|([${removable}\\s]+)$`, 'g')
+  const regexp: RegExp = new RegExp(`^([${removable}\\s]+)|([${removable}\\s]+)$`, 'g')
 
   return value.replace(regexp, '')
 }

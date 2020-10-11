@@ -13,24 +13,25 @@ export const sidebarTemplate = `
     <ul class="chat-list">
       {{#each chats}}
       <li class="chat-list__item {{#if this.active }}chat-list__item_active{{/if}}">
-        <button class="chat-item" onclick="router.go(&quot;/chat&quot;)">
+        <button class="chat-item" onclick="router.go(&quot;/chat?id={{ this.id }}&quot;)">
           <div class="chat-item__inner">
             <div class="chat-item__avatar">
               <img
-                src="{{ this.peer.avatar }}"
+                src="{{ this.avatar }}"
                 alt="Beautiful person"
                 width="48"
                 height="48"
                 class="img img_rounded"
+                onerror="this.src='https://via.placeholder.com/50'"
               />
             </div>
             <div class="chat-item__content">
               <div class="chat-item__main">
-                <div class="chat-item__user">{{ this.peer.name }}</div>
-                <div class="chat-item__message">{{ this.lastMessage.message }}</div>
+                <div class="chat-item__user">{{ this.title }}</div>
+                <div class="chat-item__message">Hello darkness my old friend</div>
               </div>
               <div class="chat-item__info">
-                <div class="chat-item__date">{{ this.lastMessage.date }}</div>
+                <div class="chat-item__date"></div>
                 {{#if this.unread }}
                 <div class="chat-item__unread">{{ this.unread }}</div>
                 {{/if}}

@@ -1,27 +1,34 @@
 import { AbstractComponent } from '../AbstractComponent'
+import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarSettingsTemplate'
+import { passwordChangeTemplate as screen } from './template'
 import { setFormValidation } from '../../utils/libs/form'
-import { http } from '../http'
 import { Router } from '../Router'
+import { http } from '../http'
 
-export class Auth extends AbstractComponent {
+export class PasswordChange extends AbstractComponent {
   constructor (template: string, options: Record<string, any>) {
     super(template, options)
+  }
+
+  componentWillRender () {
+    Handlebars.registerPartial('sidebar', sidebar)
+    Handlebars.registerPartial('screen', screen)
   }
 
   render () {
     const { _element } = this
 
     if (_element) {
-      const form = _element.querySelector('#authForm') as HTMLFormElement
+      const form = _element.querySelector('#passwordForm') as HTMLFormElement
       if (form) {
         const router = Router.getInstance()
         const onSubmit = (formData: FormData) => {
           // guess it needs to be done in http class but it's here for now
           const data = JSON.stringify(Object.fromEntries(formData))
           http
-            .post(form.action, { data, headers: { 'content-type': 'application/json' } })
+            .put(form.action, { data, headers: { 'content-type': 'application/json' } })
             .then(() => {
-              router.go('/')
+              router.go('/profile')
             })
         }
         setFormValidation(form as HTMLFormElement, onSubmit)
@@ -29,5 +36,8 @@ export class Auth extends AbstractComponent {
     }
   }
 
-  unmount () {}
+  unmount () {
+    Handlebars.unregisterPartial('sidebar')
+    Handlebars.unregisterPartial('screen')
+  }
 }

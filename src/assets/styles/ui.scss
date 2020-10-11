@@ -3,6 +3,7 @@
  */
 
 .btn {
+  flex: 0 0 auto;
   padding: 0;
   border: none;
   outline: none;
@@ -66,6 +67,29 @@
 /**
  * Forms
  */
+
+.form-chat {
+  display: none;
+}
+
+.form-chat.form-chat_active {
+  display: block;
+}
+
+.form-user-add {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 200px;
+}
+
+.form-user-add .input-field {
+  margin: 0 1rem 0 0 !important;
+}
+
+.form-user-add .btn {
+  font-size: 0.875rem;
+}
 
 .fieldset {
   border: none;
@@ -139,4 +163,17 @@
 
 .input.input_invalid {
   border-bottom: 2px solid #ef0000;
+}
+
+.input.input_file {
+  padding-top: 1.75em;
+}
+
+.input.input_file::-webkit-file-upload-button {
+  font-size: 0;
+  visibility: hidden;
+}
+
+.input.input_file ~ label {
+  display: none;
 }

@@ -1,12 +1,3 @@
-/**
- * IMPORTANT NOTE
- *
- * Since @tsc does not serve file extensions I should use them in src files' imports
- * But Jest does not like it when there are extensions in imports
- * So I write extensions to make it work
- * Tests are fine, believe me ;)
- */
-
 import { Router } from '../src/components/Router'
 import { Route } from '../src/components/Route'
 import { AbstractComponent } from '../src/components/AbstractComponent'
@@ -45,8 +36,8 @@ describe('Router module', () => {
   })
 
   describe('_onRoute()', () => {
-    test('with incorrect route', () => {
-      const res = router._onRoute('/oops')
+    test('with incorrect route', async () => {
+      const res = await router._onRoute('/oops')
       expect(res).toBeUndefined()
     })
 

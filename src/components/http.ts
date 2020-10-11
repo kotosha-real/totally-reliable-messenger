@@ -7,13 +7,8 @@ const METHODS = {
   DELETE: 'DELETE'
 }
 
-/**
- * Returns passed @data stringified
- * @param {object} data
- */
-
 export class http {
-  get(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static get (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     const { data } = options
     return this.request(
       `${url}${queryStringify(data)}`,
@@ -22,19 +17,21 @@ export class http {
     )
   }
 
-  post(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static post (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.POST }, options.timeout)
   }
 
-  put(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static put (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.PUT }, options.timeout)
   }
 
-  delete(url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
+  static delete (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
   }
 
-  request(
+  // did not want to include request and setHeaders methods here but have no idea how to test them elsewise
+  // will be glad to hear an advice
+  static request (
     url: string,
     options: Record<string, any>,
     timeout = 5000
@@ -46,13 +43,18 @@ export class http {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
       xhr.open(method, url)
+      xhr.withCredentials = true
 
       if (headers && Object.entries(headers).length) this.setHeaders(xhr, headers)
 
       xhr.timeout = timeout
 
       xhr.onload = function () {
-        resolve(xhr)
+        if (xhr.status >= 400) {
+          reject(xhr)
+        } else {
+          resolve(xhr)
+        }
       }
 
       xhr.onabort = reject
@@ -67,7 +69,7 @@ export class http {
     })
   }
 
-  setHeaders(xhr: XMLHttpRequest, headers: Record<string, any>): void {
+  static setHeaders (xhr: XMLHttpRequest, headers: Record<string, any>): void {
     if (!xhr) throw new Error('Give me something')
 
     Object.entries(headers).forEach(([header, value]) => {
