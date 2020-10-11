@@ -5,11 +5,13 @@ export const options = {
   data: [
     {
       title: 'Login',
+      name: 'login',
       value: '',
       type: 'text'
     },
     {
       title: 'Password',
+      name: 'password',
       value: '',
       type: 'password'
     }

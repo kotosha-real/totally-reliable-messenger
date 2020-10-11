@@ -4,7 +4,8 @@ export const options = {
   type: TYPE.REG,
   data: [
     {
-      title: 'Login',
+      title: 'First name',
+      name: 'first_name',
       value: 'Mark',
       type: 'text',
       validation: {
@@ -14,7 +15,30 @@ export const options = {
       }
     },
     {
+      title: 'Second name',
+      name: 'second_name',
+      value: 'Mark',
+      type: 'text',
+      validation: {
+        type: 'pattern',
+        value: /.{6,}/,
+        message: 'Must contain at least 6 characters'
+      }
+    },
+    {
+      title: 'Login',
+      name: 'login',
+      value: 'mark@gmail.com',
+      type: 'text',
+      validation: {
+        type: 'pattern',
+        value: /.{6,}/,
+        message: 'Must contain at least 6 characters'
+      }
+    },
+    {
       title: 'Email',
+      name: 'email',
       value: 'mark@gmail.com',
       type: 'text',
       validation: {
@@ -24,7 +48,19 @@ export const options = {
       }
     },
     {
+      title: 'Phone',
+      name: 'phone',
+      value: '8 123 456 78 90',
+      type: 'text',
+      validation: {
+        type: 'pattern',
+        value: /\d+/,
+        message: 'Must be digits'
+      }
+    },
+    {
       title: 'Password',
+      name: 'password',
       value: '123456',
       type: 'password',
       validation: {

@@ -10,8 +10,7 @@ export class AbstractComponent {
   options: Record<string, any>
   eventBus: EventBus
 
-  constructor(template: string, options = {}) {
-    // instead of static to please Jest :c
+  constructor (template: string, options = {}) {
     this._events = {
       INIT: 'init',
       FLOW_CDM: 'flow:component-did-mount',
@@ -28,18 +27,17 @@ export class AbstractComponent {
     this.eventBus = new EventBus()
 
     this._registerEvents(this.eventBus)
-    this.eventBus.emit(this._events.INIT)
   }
 
-  get element(): HTMLElement | null {
+  get element (): HTMLElement | null {
     return this._element
   }
 
-  set element(el) {
+  set element (el) {
     this._element = el
   }
 
-  _registerEvents(eventBus: EventBus): void {
+  _registerEvents (eventBus: EventBus): void {
     eventBus.on(this._events.INIT, this._init.bind(this))
     eventBus.on(this._events.FLOW_CDM, this._componentDidMount.bind(this))
     eventBus.on(this._events.FLOW_CDU, this._componentDidUpdate.bind(this))
@@ -48,42 +46,49 @@ export class AbstractComponent {
     eventBus.on(this._events.FLOW_CWU, this._unmount.bind(this))
   }
 
-  _init(): void {
+  _init (): void {
+    this.init()
     this.eventBus.emit(this._events.FLOW_CDM)
   }
 
-  _componentDidMount(): void {
+  init (): void {}
+
+  _componentDidMount (): void {
+    // wait for the data and then emit render
+    this.componentDidMount().then(() => {
+      this.eventBus.emit(this._events.FLOW_CWR)
+    })
     /**
      * Q: Почему 2 одинаковых метода, один из которых (приватный) вызывает публичный? это странно выглядит, для чего приватный?
-     * A: Для консистентности. Есть приватные методы, которые так или иначе имеют некоторую логику. Они здесь была, но оказалсь выпилена и потенциально может быть реализована снова.
+     * A: Для консистентности. Есть приватные методы, которые так или иначе имеют некоторую логику. Она здесь была, но оказалась выпилена и потенциально может быть реализована снова.
      *    Изнутри приватные методы вызывают публичные, которые можно переопределить в каждом компоненте, расширяющем абстрактный, то есть, по сути публичные методы являются хуками.
      */
-    this.componentDidMount()
   }
 
-  componentDidMount(): void {}
+  // async function used to retrieve some data before component render
+  // data setter have to be implemented in child components
+  async componentDidMount (): Promise<void> {}
 
-  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>): void {
+  _componentDidUpdate (oldProps: Record<string, any>, newProps: Record<string, any>): void {
     const equal = isEqual(oldProps, newProps)
 
     if (!equal) {
       this.componentDidUpdate()
-      this.setOptions(newProps)
       this.eventBus.emit(this._events.FLOW_CWR)
     }
   }
 
-  componentDidUpdate(): void {}
+  componentDidUpdate (): void {}
 
-  _componentWillRender(root: string): void {
+  _componentWillRender (root: string): void {
     this.componentWillRender()
     this.eventBus.emit(this._events.FLOW_RENDER, root)
   }
 
-  componentWillRender(): void {}
+  componentWillRender (): void {}
 
-  _render(root: string): void {
-    let rootEl: Node | null =
+  _render (root = '#app'): void {
+    const rootEl: Node | null =
       this._element && this._element.parentNode
         ? this._element.parentNode
         : document.querySelector(root)
@@ -98,9 +103,9 @@ export class AbstractComponent {
     this.render()
   }
 
-  render(): void {}
+  render (): void {}
 
-  _unmount(): void {
+  _unmount (): void {
     if (this._element) {
       const { parentNode } = this._element
 
@@ -113,31 +118,31 @@ export class AbstractComponent {
     this.unmount()
   }
 
-  unmount(): void {}
+  unmount (): void {}
 
-  _proxyOptions(options: Record<string, any>): Record<string, any> {
+  _proxyOptions (options: Record<string, any>): Record<string, any> {
     const self = this
 
     return new Proxy(options, {
-      set(target, prop, value) {
-        let oldTarget = Object.assign({}, target)
-        let newTarget = Object.assign({}, target, { [prop]: value })
+      set (target, prop, value) {
+        const oldTarget = Object.assign({}, target)
+        const newTarget = Object.assign({}, target, { [prop]: value })
+        target[String(prop)] = value
         self.eventBus.emit(self._events.FLOW_CDU, oldTarget, newTarget)
         return true
       },
 
-      deleteProperty() {
+      deleteProperty () {
         throw new Error('Get lost.')
       }
     })
   }
 
-  setOptions(options: Record<string, any>): void {
+  setOptions (options: Record<string, any>): void {
     if (!options) {
       return
     }
 
-    // this.options = Object.assing(this.options, options)
-    this.options = this._proxyOptions(options) // not so pretty but I got myself in infinite loop with previous solution
+    this.options = Object.assign(this.options, options)
   }
 }

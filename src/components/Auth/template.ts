@@ -7,10 +7,10 @@ export const signXXTemplate = `
     </div>
     <div class="login__inner">
       {{#if (isLogin type) }}
-        <form action="#" id="authForm">
+        <form action="https://ya-praktikum.tech/api/v2/auth/signin" id="authForm">
           <fieldset class="fieldset">
             {{#each data }}
-              {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validations) }}
+              {{> input (createObject type = this.type title = this.title name = this.name label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validation) }}
             {{/each}}
           </fieldset>
           <fieldset class="fieldset">
@@ -23,10 +23,10 @@ export const signXXTemplate = `
           </fieldset>
         </form>
       {{else}}
-        <form action="#" id="authForm">
+        <form action="https://ya-praktikum.tech/api/v2/auth/signup" id="authForm">
           <fieldset class="fieldset">
             {{#each data }}
-              {{> input (createObject type = this.type title = this.title label = true classList = (createArray 'input_common' 'input_full-width') validation = this.validation) }}
+              {{> input (createObject type = this.type title = this.title name = this.name label = true classList = (createArray 'input_common' 'input_full-width') validation = this.validation) }}
             {{/each}}
           </fieldset>
           <fieldset class="fieldset">

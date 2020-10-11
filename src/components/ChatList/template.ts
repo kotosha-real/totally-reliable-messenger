@@ -57,8 +57,14 @@ export const chatTemplate = `
         <div class="verbose__block">
           <div class="verbose__text">
             Select chat or
-            {{> button (createObject value = 'start a new one' id = 'buttonStartChat' classList = (createArray 'btn_common' 'btn_accent' 'btn_inline')) }}
+            {{> button (createObject value = 'start a new one' id = 'buttonCreateChat' classList = (createArray 'btn_common' 'btn_accent' 'btn_inline')) }}
           </div>
+          <form action="https://ya-praktikum.tech/api/v2/chats" id="createChatForm" class="form-chat">
+            {{#with createOptions }}
+              {{> input (createObject type = type title = title name = name label = true classList = (createArray 'input_common' 'input_full-width') validation = validation) }}
+            {{/with}}
+            {{> button (createObject value = 'Create chat' id = 'buttonCreateChat' classList = (createArray 'btn_common' 'btn_accent')) }}
+          </form>
         </div>
       </div>
     {{/if}}

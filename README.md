@@ -23,6 +23,8 @@ npm run build
 
 [Netlify](https://quizzical-wiles-72addf.netlify.app/) autodeploy configured from `deploy` branch
 
+Also [Heroku](https://arcane-depths-59127.herokuapp.com/) build
+
 ## Team
 
 <table align="center">

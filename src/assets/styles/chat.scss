@@ -57,8 +57,8 @@
 
 .chat-item.chat-item_open {
   height: 3rem;
-  margin-right: 0.75rem;
   padding: 0;
+  cursor: initial;
 }
 
 .chat-list__item:hover .chat-item {
@@ -83,6 +83,24 @@
 
 .chat-item.chat-item_open .chat-item__inner {
   padding: 0;
+}
+
+.chat-users__user-remove {
+  margin: 0 0.75em;
+  padding: 0.5em;
+  border: none;
+  font-size: 0.6125em;
+  background-color: unset;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.chat-users__name {
+  display: flex;
+
+  &:hover .chat-users__user-remove {
+    visibility: visible;
+  }
 }
 
 .chat-list__item:not(:first-child) .chat-item__inner {
@@ -187,6 +205,26 @@
 
 .chat-list__item.chat-list__item_active .chat-item__unread {
   display: none;
+}
+
+.chat-users {
+  flex-grow: 1;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chat-users__user {
+  display: inline-block;
+
+  &:not(:last-child) {
+    margin-right: 1em;
+  }
 }
 
 /**

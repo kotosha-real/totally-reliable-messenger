@@ -16,5 +16,5 @@ export const isEmpty = function (value: any): boolean {
   const objectEmpty: boolean = Boolean(
     (Array.isArray(value) && !value.length) || (isObject(value) && !Object.keys(value).length)
   )
-  return objectEmpty || !Boolean(value)
+  return objectEmpty || !value
 }
