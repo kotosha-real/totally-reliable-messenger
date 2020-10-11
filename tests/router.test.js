@@ -36,8 +36,8 @@ describe('Router module', () => {
   })
 
   describe('_onRoute()', () => {
-    test('with incorrect route', () => {
-      const res = router._onRoute('/oops')
+    test('with incorrect route', async () => {
+      const res = await router._onRoute('/oops')
       expect(res).toBeUndefined()
     })
 

@@ -28,7 +28,8 @@ describe('component module', () => {
         },
         eventBus: {
           emit: jest.fn()
-        }
+        },
+        init: jest.fn()
       }
 
       component._init.bind(vm)()
@@ -37,9 +38,9 @@ describe('component module', () => {
   })
 
   describe('_componentDidMount()', () => {
-    test('call componentDidMount()', () => {
+    test('call componentDidMount()', async () => {
       const vm = {
-        componentDidMount: jest.fn()
+        componentDidMount: jest.fn().mockResolvedValue(42)
       }
 
       component._componentDidMount.bind(vm)()
