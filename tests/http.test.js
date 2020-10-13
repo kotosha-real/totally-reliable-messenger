@@ -1,4 +1,4 @@
-import { http } from '../src/components/http.ts'
+import { http } from '../src/api/http'
 
 describe('http module', () => {
   const vm = {

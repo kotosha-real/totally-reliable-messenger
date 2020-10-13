@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
+    "dev": "webpack-dev-server --open",
     "start": "node server",
     "lint": "eslint src/**/*.{ts,js} --quiet",
     "lint:fix": "eslint src/**/*.{ts,js} --quiet --fix"
@@ -47,8 +48,11 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
+    "html-webpack-plugin": "^4.5.0",
     "husky": "4.3.0",
     "jest": "26.4.2",
+    "postcss": "8.1.1",
+    "postcss-loader": "4.0.4",
     "prettier": "2.0.5",
     "sass": "1.26.11",
     "sass-loader": "10.0.3",
