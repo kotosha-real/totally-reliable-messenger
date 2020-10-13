@@ -5,7 +5,7 @@ export const profileTemplate = `
         <div class="settings-user__avatar">
           <img src="{{ getAvatar user.data }}" alt="{{ user.data.login }}" onerror="this.src='https://via.placeholder.com/150'">
         </div>
-        <form action="https://ya-praktikum.tech/api/v2/user/profile/avatar" id="avatarForm" enctype="multipart/form-data">
+        <form action="#" id="avatarForm" enctype="multipart/form-data">
           {{#with avatar }}
             {{> input (createObject type = type title = title name = name label = true classList = (createArray 'input_common' 'input_full-width' 'input_file') validation = validation) }}
           {{/with}}

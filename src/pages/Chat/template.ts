@@ -26,7 +26,7 @@ export const chatTemplate = `
                 </ul>
               </div>
             </div>
-            <form action="https://ya-praktikum.tech/api/v2/chats/users" id="addUserForm" class="form-user-add">
+            <form https://ya-praktikum.tech/api/v2/chats/users" id="addUserForm" class="form-user-add">
               {{#with addUserOptions }}
                 {{> input (createObject type = type title = title name = name placeholder = placeholder classList = (createArray 'input_flat' 'input_full-width') validation = validation) }}
               {{/with}}

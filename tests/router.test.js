@@ -1,6 +1,6 @@
 import { Router } from '../src/components/Router'
 import { Route } from '../src/components/Route'
-import { AbstractComponent } from '../src/components/AbstractComponent'
+import { AbstractComponent } from '../src/pages/AbstractComponent'
 
 const router = Router.getInstance()
 const component = new AbstractComponent('', {})

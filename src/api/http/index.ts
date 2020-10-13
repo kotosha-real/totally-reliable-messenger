@@ -1,4 +1,4 @@
-import { queryStringify } from '../utils/mydash/queryStringify'
+import { queryStringify } from '../../utils/mydash/queryStringify'
 
 const METHODS = {
   GET: 'GET',
@@ -38,11 +38,17 @@ export class http {
   ): Promise<XMLHttpRequest> | never {
     if (!options) throw new Error('Give me something')
 
+    // thx Yuri Markov for the tip
+    const BASE_URL = process.env.BASEURL || 'https://ya-praktikum.tech/api/v2/'
+    // check complete URLs from form actions
+    const isUrlComplete = url.match(BASE_URL)
+    const requestUrl = `${isUrlComplete ? '' : BASE_URL}${url}`
+
     const { method, data, headers } = options
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
-      xhr.open(method, url)
+      xhr.open(method, requestUrl)
       xhr.withCredentials = true
 
       if (headers && Object.entries(headers).length) this.setHeaders(xhr, headers)

@@ -1,9 +1,9 @@
 import { AbstractComponent } from '../AbstractComponent'
 import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarChatTemplate'
 import { chatTemplate as screen } from './template'
-import { http } from '../http'
-import { Router } from '../Router'
+import { Router } from '../../components/Router'
 import { setFormValidation } from '../../utils/libs/form'
+import { getChats, getChatUsers, addUserToChat, deleteUserFromChat } from '../../entities/chats'
 
 function getChatId (): number {
   return +document.location.search.slice(1).replace(/\D/g, '')
@@ -11,9 +11,11 @@ function getChatId (): number {
 
 async function removeUserFromChat (evt: Event): Promise<void> {
   const target = evt.target as HTMLElement
-  const btnUser = target.closest('.chat-users__user-remove') as HTMLElement
+  const btnUser = target.closest('.chat-users__user-remove') as HTMLButtonElement
 
   if (!btnUser) return
+
+  btnUser.disabled = true
 
   const userId = btnUser.dataset.id
   const chatId = getChatId()
@@ -21,15 +23,22 @@ async function removeUserFromChat (evt: Event): Promise<void> {
     users: [+userId!],
     chatId: chatId
   })
+  let isDeleted = false
 
-  btnUser.closest('.chat-users__user')!.remove() // to prevent global render we destroy one tiny user
+  await deleteUserFromChat(data)
+    .then(() => {
+      // wait 'till request is done
+      // to prevent global render we destroy one tiny user
+      btnUser.closest('.chat-users__user')!.remove()
+      isDeleted = true
+    })
+    .catch(() => {
+      btnUser.disabled = false
+    })
 
-  await http.delete('https://ya-praktikum.tech/api/v2/chats/users', {
-    data,
-    headers: { 'content-type': 'application/json' }
-  })
+  if (!isDeleted) return
 
-  await http.get(`https://ya-praktikum.tech/api/v2/chats/${chatId}/users`).catch(() => {
+  await getChatUsers(chatId).catch(() => {
     // when we delete last user there is no chat anymore, so this endpoint returns 400
     const router = Router.getInstance()
     router.go('/')
@@ -43,21 +52,20 @@ export class Chat extends AbstractComponent {
 
   async componentDidMount () {
     const options: Record<string, any> = {}
-    const id = getChatId()
+    const chatId = getChatId()
 
-    await http.get('https://ya-praktikum.tech/api/v2/chats').then((res) => {
+    await getChats().then((res) => {
       const chats = JSON.parse(res.response)
       options.chats = chats.map((chat: Record<string, any>) => {
-        const isActiveChat = chat.id === +id
+        const isActiveChat = chat.id === chatId
         if (isActiveChat) options.activeChat = chat
         return Object.assign(chat, { active: isActiveChat })
       })
     })
 
-    await http.get(`https://ya-praktikum.tech/api/v2/chats/${id}/users`).then((res) => {
+    await getChatUsers(chatId).then((res) => {
       const users = JSON.parse(res.response)
       options.users = users
-      console.log(users)
       this.setOptions(options)
     })
   }
@@ -81,9 +89,9 @@ export class Chat extends AbstractComponent {
           const user = Object.fromEntries(formData)
           const data = JSON.stringify({ users: [+user.userId], chatId })
 
-          await http.put(formAdd.action, { data, headers: { 'content-type': 'application/json' } })
+          await addUserToChat(data)
 
-          await http.get(`https://ya-praktikum.tech/api/v2/chats/${chatId}/users`).then((res) => {
+          await getChatUsers(chatId).then((res) => {
             const users = JSON.parse(res.response)
             this.setOptions({ users })
           })

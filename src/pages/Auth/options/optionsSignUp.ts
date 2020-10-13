@@ -1,7 +1,7 @@
-import { TYPE } from '../../../constants/index'
+import { AUTH_FORM_TYPES } from '../../../constants/'
 
 export const options = {
-  type: TYPE.REG,
+  type: AUTH_FORM_TYPES.REG,
   data: [
     {
       title: 'First name',

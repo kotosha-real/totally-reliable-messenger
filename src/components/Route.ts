@@ -1,4 +1,4 @@
-import { AbstractComponent } from './AbstractComponent'
+import { AbstractComponent } from '../pages/AbstractComponent'
 
 export class Route {
   _pathname: string

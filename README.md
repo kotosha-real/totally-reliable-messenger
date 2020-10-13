@@ -21,9 +21,9 @@ Build production-ready version with
 npm run build
 ```
 
-[Netlify](https://quizzical-wiles-72addf.netlify.app/) autodeploy configured from `deploy` branch
+[Netlify](https://quizzical-wiles-72addf.netlify.app/) autodeploy configured from `deploy` branch (now outdated)
 
-Also [Heroku](https://arcane-depths-59127.herokuapp.com/) build
+Also [Heroku](https://secret-castle-47565.herokuapp.com/) build
 
 ## Team
 

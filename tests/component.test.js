@@ -1,6 +1,10 @@
-import { AbstractComponent } from '../src/components/AbstractComponent'
+import { AbstractComponent } from '../src/pages/AbstractComponent'
 
-const component = new AbstractComponent('', {})
+let component = new AbstractComponent('', {})
+
+beforeEach(() => {
+  component = new AbstractComponent('', {})
+})
 
 describe('component module', () => {
   test('element getter', () => {
