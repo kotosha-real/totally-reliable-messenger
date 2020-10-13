@@ -1,6 +1,6 @@
-import { AbstractComponent } from './AbstractComponent'
+import { AbstractComponent } from '../pages/AbstractComponent'
 import { Route } from './Route'
-import { http } from './http'
+import { getProfileInfo, logout } from '../entities/user'
 
 export class Router {
   static __instance: Router | undefined
@@ -54,13 +54,15 @@ export class Router {
     // route guard for not logged in users
     if (route.requiredAuth) {
       let isAuthorized = false
-      await http
-        .get('https://ya-praktikum.tech/api/v2/auth/user')
+      await getProfileInfo()
         .then(() => {
           isAuthorized = true
         })
         .catch(() => {
-          this.go('/sign-in')
+          // safe logout user yo prevent "User already logged in" errors
+          logout().finally(() => {
+            this.go('/sign-in')
+          })
         })
 
       if (!isAuthorized) return

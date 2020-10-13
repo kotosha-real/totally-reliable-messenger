@@ -59,7 +59,7 @@ export const chatTemplate = `
             Select chat or
             {{> button (createObject value = 'start a new one' id = 'buttonCreateChat' classList = (createArray 'btn_common' 'btn_accent' 'btn_inline')) }}
           </div>
-          <form action="https://ya-praktikum.tech/api/v2/chats" id="createChatForm" class="form-chat">
+          <form action="#" id="createChatForm" class="form-chat">
             {{#with createOptions }}
               {{> input (createObject type = type title = title name = name label = true classList = (createArray 'input_common' 'input_full-width') validation = validation) }}
             {{/with}}

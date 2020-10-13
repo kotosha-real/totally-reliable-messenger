@@ -1,4 +1,4 @@
-import { EventBus } from './EventBus'
+import { EventBus } from '../components/EventBus'
 import { compile } from '../utils/mydash/compile'
 import { isEqual } from '../utils/mydash/isEqual'
 

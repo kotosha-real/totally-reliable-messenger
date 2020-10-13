@@ -1,10 +1,10 @@
 import { convert } from '../../utils/mydash/convert'
 import { AbstractComponent } from '../AbstractComponent'
 import { sidebarTemplate as sidebar } from '../CommonTmpl/SidebarSettingsTemplate'
-import { http } from '../http'
-import { Router } from '../Router'
+import { Router } from '../../components/Router'
 import { profileTemplate as screen } from './template'
 import { setFormValidation } from '../../utils/libs/form'
+import { getProfileInfo, logout, changeAvatar } from '../../entities/user'
 
 function processUserData (res: XMLHttpRequest, component: Profile) {
   const options = JSON.parse(res.response)
@@ -22,7 +22,7 @@ export class Profile extends AbstractComponent {
   }
 
   async componentDidMount () {
-    await http.get('https://ya-praktikum.tech/api/v2/auth/user').then((res) => {
+    await getProfileInfo().then((res) => {
       processUserData(res, this)
     })
   }
@@ -40,7 +40,7 @@ export class Profile extends AbstractComponent {
       if (logoutBtn) {
         const router = Router.getInstance()
         logoutBtn.addEventListener('click', () => {
-          http.post('https://ya-praktikum.tech/api/v2/auth/logout').then(() => {
+          logout().then(() => {
             router.go('/sign-in')
           })
         })
@@ -49,10 +49,7 @@ export class Profile extends AbstractComponent {
       const form = _element.querySelector('#avatarForm') as HTMLFormElement
       if (form) {
         const onSubmit = (formData: FormData) => {
-          http
-            .put(form.action, {
-              data: formData
-            })
+          changeAvatar(formData)
             .then((res) => {
               processUserData(res, this)
             })

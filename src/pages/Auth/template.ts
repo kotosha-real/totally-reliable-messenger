@@ -7,11 +7,12 @@ export const signXXTemplate = `
     </div>
     <div class="login__inner">
       {{#if (isLogin type) }}
-        <form action="https://ya-praktikum.tech/api/v2/auth/signin" id="authForm">
+        <form action="#" id="authForm" data-type="signin">
           <fieldset class="fieldset">
             {{#each data }}
               {{> input (createObject type = this.type title = this.title name = this.name label = true classList = (createArray 'input_common' 'input_full-width') validations = this.validation) }}
             {{/each}}
+            <div class="login-error">These are not the credentials we are looking for</div>
           </fieldset>
           <fieldset class="fieldset">
             <div class="input-field">
@@ -23,7 +24,7 @@ export const signXXTemplate = `
           </fieldset>
         </form>
       {{else}}
-        <form action="https://ya-praktikum.tech/api/v2/auth/signup" id="authForm">
+        <form action="#" id="authForm" data-type="signup">
           <fieldset class="fieldset">
             {{#each data }}
               {{> input (createObject type = this.type title = this.title name = this.name label = true classList = (createArray 'input_common' 'input_full-width') validation = this.validation) }}
